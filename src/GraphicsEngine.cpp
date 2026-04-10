@@ -185,7 +185,7 @@ bool GraphicsEngine::initialize() {
 // ============================================================================
 
 void GraphicsEngine::initializeLights() {
-    lights.clear();
+    plants.clear();
     
     // No inicializar plantas - el mapa comienza vacío
     // El usuario creará plantas con clicks del ratón
@@ -318,32 +318,32 @@ glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
 // AGREGAR LUZ ALEATORIA EN UNA POSICIÓN
 // ============================================================================
 
-void GraphicsEngine::addRandomLight(const glm::vec3& position) {
+void GraphicsEngine::addPlant(const glm::vec3& position) {
     std::mt19937 gen(std::random_device{}());
     std::uniform_real_distribution<float> dist_rand(0.0f, 1.0f);
     std::uniform_real_distribution<float> dist_scale(0.8f, 1.3f);  // Escala procedural
     std::uniform_real_distribution<float> dist_rotation(0.0f, glm::two_pi<float>());  // Rotación
 
-    Light newLight;
-    newLight.position = position;
-    newLight.velocity = glm::vec3(0.0f, 0.0f, 0.0f);  // Estática
-    newLight.scale = dist_scale(gen);  // Variedad procedural
-    newLight.rotation = dist_rotation(gen);  // Rotación random
+    Plant newPlant;
+    newPlant.position = position;
+    newPlant.velocity = glm::vec3(0.0f, 0.0f, 0.0f);  // Estática
+    newPlant.scale = dist_scale(gen);  // Variedad procedural
+    newPlant.rotation = dist_rotation(gen);  // Rotación random
 
     // Determinar tipo de planta
     float rand = dist_rand(gen);
     if (rand < PLANT_PROBABILITY_TREE) {
-        newLight.type = TREE;
-        newLight.color = glm::vec3(0.1f, 0.5f, 0.05f);  // Verde oscuro para árbol
+        newPlant.type = TREE;
+        newPlant.color = glm::vec3(0.1f, 0.5f, 0.05f);  // Verde oscuro para árbol
     } else if (rand < PLANT_PROBABILITY_TREE + PLANT_PROBABILITY_BUSH) {
-        newLight.type = BUSH;
-        newLight.color = glm::vec3(0.2f, 0.7f, 0.1f);  // Verde medio para arbusto
+        newPlant.type = BUSH;
+        newPlant.color = glm::vec3(0.2f, 0.7f, 0.1f);  // Verde medio para arbusto
     } else {
-        newLight.type = GRASS;
-        newLight.color = glm::vec3(0.3f, 0.8f, 0.2f);   // Verde claro para hierba
+        newPlant.type = GRASS;
+        newPlant.color = glm::vec3(0.3f, 0.8f, 0.2f);   // Verde claro para hierba
     }
 
-    lights.push_back(newLight);
+    plants.push_back(newPlant);
 }
 
 // ============================================================================
@@ -422,9 +422,9 @@ void GraphicsEngine::handleInput() {
             glfwGetCursorPos(window, &mouseX, &mouseY);
             glm::vec3 hitPos = getRaycastHit(mouseX, mouseY);
             
-            // Agregar luz en esa posición
-            if (lights.size() < MAX_LIGHTS) {
-                addRandomLight(hitPos);
+            // Agregar planta en esa posición
+            if (plants.size() < MAX_LIGHTS) {
+                addPlant(hitPos);
             }
         } else if (state == GLFW_RELEASE) {
             leftMousePressed = false;
@@ -436,22 +436,22 @@ void GraphicsEngine::update(float deltaTime) {
     // Actualizar tiempo transcurrido
     elapsedTime += deltaTime;
 
-    // Actualizar posición de luces (aunque no se muevan, mantenemos la lógica)
-    for (auto& light : lights) {
-        light.position += light.velocity;
+    // Actualizar posición de plantas (aunque no se muevan, mantenemos la lógica)
+    for (auto& plant : plants) {
+        plant.position += plant.velocity;
 
         // Mantener en el terreno
         const float boundX = TERRAIN_SIZE/2.0f;
         const float boundZ = TERRAIN_SIZE/2.0f;
         
         // Rebotar en los límites
-        if (light.position.x < -boundX || light.position.x > boundX) {
-            light.velocity.x *= -1.0f;
-            light.position.x = glm::clamp(light.position.x, -boundX, boundX);
+        if (plant.position.x < -boundX || plant.position.x > boundX) {
+            plant.velocity.x *= -1.0f;
+            plant.position.x = glm::clamp(plant.position.x, -boundX, boundX);
         }
-        if (light.position.z < -boundZ || light.position.z > boundZ) {
-            light.velocity.z *= -1.0f;
-            light.position.z = glm::clamp(light.position.z, -boundZ, boundZ);
+        if (plant.position.z < -boundZ || plant.position.z > boundZ) {
+            plant.velocity.z *= -1.0f;
+            plant.position.z = glm::clamp(plant.position.z, -boundZ, boundZ);
         }
     }
 
@@ -620,13 +620,13 @@ void GraphicsEngine::renderGameScene() {
     
     // Contar plantas por tipo
     int grassCount = 0, bushCount = 0, treeCount = 0;
-    for (const auto& light : lights) {
-        if (light.type == GRASS) grassCount++;
-        else if (light.type == BUSH) bushCount++;
-        else if (light.type == TREE) treeCount++;
+    for (const auto& plant : plants) {
+        if (plant.type == GRASS) grassCount++;
+        else if (plant.type == BUSH) bushCount++;
+        else if (plant.type == TREE) treeCount++;
     }
     
-    ImGui::Text("Plants: %d / %d", (int)lights.size(), MAX_LIGHTS);
+    ImGui::Text("Plants: %d / %d", (int)plants.size(), MAX_LIGHTS);
     ImGui::Text("  Grass: %d (80%%)", grassCount);
     ImGui::Text("  Bush: %d (15%%)", bushCount);
     ImGui::Text("  Tree: %d (5%%)", treeCount);
@@ -788,18 +788,18 @@ void GraphicsEngine::renderPlants() {
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uView"), 1, GL_FALSE, glm::value_ptr(view));
     
     // Renderizar cada planta con su geometría procedural
-    for (const auto& light : lights) {
-        if (plantVAOs.find(light.type) == plantVAOs.end()) continue;
+    for (const auto& plant : plants) {
+        if (plantVAOs.find(plant.type) == plantVAOs.end()) continue;
         
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, light.position);
-        model = glm::rotate(model, light.rotation, glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(light.scale));
+        model = glm::translate(model, plant.position);
+        model = glm::rotate(model, plant.rotation, glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(plant.scale));
         
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uModel"), 1, GL_FALSE, glm::value_ptr(model));
         
-        glBindVertexArray(plantVAOs[light.type]);
-        glDrawArrays(GL_TRIANGLES, 0, plantIndexCounts[light.type]);
+        glBindVertexArray(plantVAOs[plant.type]);
+        glDrawArrays(GL_TRIANGLES, 0, plantIndexCounts[plant.type]);
     }
 }
 

@@ -663,11 +663,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -681,9 +676,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -973,11 +970,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -991,9 +983,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -1028,11 +1022,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -1046,9 +1035,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "message-v1"
@@ -1297,11 +1288,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -1315,9 +1301,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -1524,11 +1512,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -1542,9 +1525,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -1751,11 +1736,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -1769,9 +1749,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -1978,11 +1960,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -1996,9 +1973,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -2205,11 +2184,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -2223,9 +2197,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -2432,11 +2408,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -2450,9 +2421,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -2659,11 +2632,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -2677,9 +2645,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -3113,11 +3083,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -3131,9 +3096,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -3340,11 +3307,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -3358,9 +3320,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -3794,11 +3758,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -3812,9 +3771,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -4076,11 +4037,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -4094,9 +4050,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -4818,11 +4776,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -4836,9 +4789,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -5560,11 +5515,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -5578,9 +5528,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -6302,11 +6254,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -6320,9 +6267,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -6612,11 +6561,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -6630,9 +6574,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -6667,11 +6613,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -6685,9 +6626,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "message-v1"
@@ -7451,11 +7394,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -7469,9 +7407,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -8193,11 +8133,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -8211,9 +8146,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -8935,11 +8872,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -8953,9 +8885,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_FIND_ROOT_PATH: "C:/vcpkg/installed/x64-windows/debug;C:/vcpkg/installed/x64-windows"
   -
     kind: "find-v1"
@@ -9446,11 +9380,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -9464,9 +9393,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -9871,11 +9802,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -9889,9 +9815,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -10299,11 +10227,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -10317,9 +10240,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -10336,8 +10261,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-niuiwq"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-niuiwq"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-0998o0"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-0998o0"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10352,16 +10277,16 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-niuiwq'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-0998o0'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_5207d
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_5207d.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_5207d.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_5207d.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_5207d.dir/CMakeCCompilerABI.c.obj -o cmTC_5207d.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_5207d.lib -Xlinker /pdb:cmTC_5207d.pdb -Xlinker /version:0.0     && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_ffabc
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_ffabc.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_ffabc.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_ffabc.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_ffabc.dir/CMakeCCompilerABI.c.obj -o cmTC_ffabc.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_ffabc.lib -Xlinker /pdb:cmTC_ffabc.pdb -Xlinker /version:0.0     && cd ."
         clang version 22.1.3 (https://github.com/llvm/llvm-project e9846648fd6183ee6d8cbdb4502213fcf902a211)
         Target: x86_64-pc-windows-msvc
         Thread model: posix
         InstalledDir: C:\\Program Files\\LLVM\\bin
-         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_5207d.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_5207d.dir/CMakeCCompilerABI.c.obj /MANIFEST:EMBED /implib:cmTC_5207d.lib /pdb:cmTC_5207d.pdb /version:0.0
+         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_ffabc.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_ffabc.dir/CMakeCCompilerABI.c.obj /MANIFEST:EMBED /implib:cmTC_ffabc.lib /pdb:cmTC_ffabc.pdb /version:0.0
         
       exitCode: 0
   -
@@ -10422,8 +10347,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-no4iiu"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-no4iiu"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-thlr7h"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-thlr7h"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: ""
@@ -10439,16 +10364,16 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-no4iiu'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-thlr7h'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_d099a
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_d099a.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles\\cmTC_d099a.dir\\CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles/cmTC_d099a.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_d099a.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_d099a.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_d099a.lib -Xlinker /pdb:cmTC_d099a.pdb -Xlinker /version:0.0     && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_7221e
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_7221e.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles\\cmTC_7221e.dir\\CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles/cmTC_7221e.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_7221e.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_7221e.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_7221e.lib -Xlinker /pdb:cmTC_7221e.pdb -Xlinker /version:0.0     && cd ."
         clang version 22.1.3 (https://github.com/llvm/llvm-project e9846648fd6183ee6d8cbdb4502213fcf902a211)
         Target: x86_64-pc-windows-msvc
         Thread model: posix
         InstalledDir: C:\\Program Files\\LLVM\\bin
-         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_d099a.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_d099a.dir/CMakeCXXCompilerABI.cpp.obj /MANIFEST:EMBED /implib:cmTC_d099a.lib /pdb:cmTC_d099a.pdb /version:0.0
+         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_7221e.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_7221e.dir/CMakeCXXCompilerABI.cpp.obj /MANIFEST:EMBED /implib:cmTC_7221e.lib /pdb:cmTC_7221e.pdb /version:0.0
         
       exitCode: 0
   -
@@ -10512,8 +10437,8 @@ events:
     checks:
       - "Detecting CXX compile features"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-w5twr1"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-w5twr1"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-pur9f0"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-pur9f0"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: ""
@@ -10528,11 +10453,11 @@ events:
       variable: "CMAKE_CXX_FEATURE_TEST"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-w5twr1'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-pur9f0'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_b5057
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_b5057.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_b5057.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_b5057.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-w5twr1/feature_tests.cxx
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_b5057.dir/feature_tests.cxx.obj -o cmTC_b5057.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_b5057.lib -Xlinker /pdb:cmTC_b5057.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_0c9c6
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_0c9c6.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_0c9c6.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_0c9c6.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-pur9f0/feature_tests.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_0c9c6.dir/feature_tests.cxx.obj -o cmTC_0c9c6.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_0c9c6.lib -Xlinker /pdb:cmTC_0c9c6.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         
       exitCode: 0
   -
@@ -10547,8 +10472,8 @@ events:
     checks:
       - "Detecting CXX compile features"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-kaizop"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-kaizop"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-0e1596"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-0e1596"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: ""
@@ -10563,11 +10488,11 @@ events:
       variable: "CMAKE_CXX_FEATURE_TEST"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-kaizop'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-0e1596'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_e6ee7
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_e6ee7.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_e6ee7.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_e6ee7.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-kaizop/feature_tests.cxx
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_e6ee7.dir/feature_tests.cxx.obj -o cmTC_e6ee7.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_e6ee7.lib -Xlinker /pdb:cmTC_e6ee7.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_377fc
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_377fc.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_377fc.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_377fc.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-0e1596/feature_tests.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_377fc.dir/feature_tests.cxx.obj -o cmTC_377fc.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_377fc.lib -Xlinker /pdb:cmTC_377fc.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         
       exitCode: 0
   -
@@ -10586,8 +10511,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-7bzoxc"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-7bzoxc"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lap789"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lap789"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10602,13 +10527,13 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-7bzoxc'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lap789'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_8b281
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_8b281.dir/src.c.obj -MF CMakeFiles\\cmTC_8b281.dir\\src.c.obj.d -o CMakeFiles/cmTC_8b281.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-7bzoxc/src.c
-        FAILED: [code=1] CMakeFiles/cmTC_8b281.dir/src.c.obj 
-        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_8b281.dir/src.c.obj -MF CMakeFiles\\cmTC_8b281.dir\\src.c.obj.d -o CMakeFiles/cmTC_8b281.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-7bzoxc/src.c
-        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-7bzoxc/src.c:1:10: fatal error: 'pthread.h' file not found
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_5e2cb
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_5e2cb.dir/src.c.obj -MF CMakeFiles\\cmTC_5e2cb.dir\\src.c.obj.d -o CMakeFiles/cmTC_5e2cb.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lap789/src.c
+        FAILED: [code=1] CMakeFiles/cmTC_5e2cb.dir/src.c.obj 
+        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_5e2cb.dir/src.c.obj -MF CMakeFiles\\cmTC_5e2cb.dir\\src.c.obj.d -o CMakeFiles/cmTC_5e2cb.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lap789/src.c
+        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lap789/src.c:1:10: fatal error: 'pthread.h' file not found
             1 | #include <pthread.h>
               |          ^~~~~~~~~~~
         1 error generated.
@@ -10630,8 +10555,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ekycn7"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ekycn7"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-x58526"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-x58526"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10646,13 +10571,13 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ekycn7'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-x58526'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_a4b24
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_a4b24.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_a4b24.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_a4b24.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ekycn7/CheckFunctionExists.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_a4b24.dir/CheckFunctionExists.c.obj -o cmTC_a4b24.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_a4b24.lib -Xlinker /pdb:cmTC_a4b24.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
-        FAILED: [code=1] cmTC_a4b24.exe 
-        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_a4b24.dir/CheckFunctionExists.c.obj -o cmTC_a4b24.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_a4b24.lib -Xlinker /pdb:cmTC_a4b24.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_0cc4d
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_0cc4d.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_0cc4d.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_0cc4d.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-x58526/CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_0cc4d.dir/CheckFunctionExists.c.obj -o cmTC_0cc4d.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_0cc4d.lib -Xlinker /pdb:cmTC_0cc4d.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        FAILED: [code=1] cmTC_0cc4d.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_0cc4d.dir/CheckFunctionExists.c.obj -o cmTC_0cc4d.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_0cc4d.lib -Xlinker /pdb:cmTC_0cc4d.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         lld-link: error: could not open 'pthreads.lib': no such file or directory
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
         ninja: build stopped: subcommand failed.
@@ -10673,8 +10598,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t6w9rv"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t6w9rv"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-98ryh3"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-98ryh3"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10689,13 +10614,13 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t6w9rv'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-98ryh3'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_a7a9b
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_a7a9b.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_a7a9b.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_a7a9b.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t6w9rv/CheckFunctionExists.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_a7a9b.dir/CheckFunctionExists.c.obj -o cmTC_a7a9b.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_a7a9b.lib -Xlinker /pdb:cmTC_a7a9b.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
-        FAILED: [code=1] cmTC_a7a9b.exe 
-        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_a7a9b.dir/CheckFunctionExists.c.obj -o cmTC_a7a9b.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_a7a9b.lib -Xlinker /pdb:cmTC_a7a9b.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_28d38
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_28d38.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_28d38.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_28d38.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-98ryh3/CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_28d38.dir/CheckFunctionExists.c.obj -o cmTC_28d38.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_28d38.lib -Xlinker /pdb:cmTC_28d38.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        FAILED: [code=1] cmTC_28d38.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_28d38.dir/CheckFunctionExists.c.obj -o cmTC_28d38.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_28d38.lib -Xlinker /pdb:cmTC_28d38.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         lld-link: error: could not open 'pthread.lib': no such file or directory
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
         ninja: build stopped: subcommand failed.
@@ -10715,8 +10640,8 @@ events:
     checks:
       - "Check if compiler accepts -pthread"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-oscyw4"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-oscyw4"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-9sd18w"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-9sd18w"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10731,13 +10656,13 @@ events:
       variable: "THREADS_HAVE_PTHREAD_ARG"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-oscyw4'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-9sd18w'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_adb67
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_adb67.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_adb67.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_adb67.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-oscyw4/CheckForPthreads.c
-        FAILED: [code=1] CMakeFiles/cmTC_adb67.dir/CheckForPthreads.c.obj 
-        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_adb67.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_adb67.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_adb67.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-oscyw4/CheckForPthreads.c
-        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-oscyw4/CheckForPthreads.c:1:10: fatal error: 'pthread.h' file not found
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_0f722
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_0f722.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_0f722.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_0f722.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-9sd18w/CheckForPthreads.c
+        FAILED: [code=1] CMakeFiles/cmTC_0f722.dir/CheckForPthreads.c.obj 
+        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_0f722.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_0f722.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_0f722.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-9sd18w/CheckForPthreads.c
+        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-9sd18w/CheckForPthreads.c:1:10: fatal error: 'pthread.h' file not found
             1 | #include <pthread.h>
               |          ^~~~~~~~~~~
         1 error generated.
@@ -10843,11 +10768,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -10861,9 +10781,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -10970,11 +10892,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -10988,9 +10905,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -11097,11 +11016,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -11115,9 +11029,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -11228,11 +11144,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -11246,9 +11157,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -11744,11 +11657,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -11762,9 +11670,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -12204,11 +12114,6 @@ events:
         - "C:\\Program Files\\LLVM\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Program Files\\LLVM\\bin"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
-        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
         - "c:\\Users\\elfab\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code"
@@ -12222,9 +12127,11 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH\\"
         - "C:\\apache-maven-3.9.12\\bin"
         - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\elfab\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\elfab\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/3DGraphicsEngine"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"

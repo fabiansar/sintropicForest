@@ -179,12 +179,12 @@ enum GameState {
 // ============================================================================
 
 /**
- * ESTRUCTURA DE LUZ (PLANTA)
+ * ESTRUCTURA PLANT
  * 
  * Representa UNA PLANTA individual en el mundo 3D.
  * 
- * NOTA DEL NOMBRE: Históricamente se llama "Light" pero son plantas.
- * En refactorización futura será "struct Plant" o "class Plant".
+ * Anteriormente se llamaba "struct Light" (renombrada en abril 11 para claridad).
+ * Las plantas son los objetos principales del sistema, no fuentes de luz.
  * 
  * Campos:
  * - position: Ubicación en el mundo (X, Y, Z)
@@ -203,26 +203,29 @@ enum GameState {
  * - type: Categoría de planta (GRASS, BUSH, TREE)
  *   Determina geometría renderizada proceduralmente
  * 
- * - scale: Factor de escala procedural (randomizado 0.8-1.2)
+ * - scale: Factor de escala procedural (randomizado 0.8-1.3)
  *   Para variedad visual entre plantas del mismo tipo
  * 
  * - rotation: Rotación Y en radianes (randomizada)
-
  * 
  * EXTENSIÓN FUTURA:
- * struct Plant : public Entity {
+ * class Plant : public Entity {
+ * private:
  *     int age;                   // En segundos
  *     PlantState state;          // SEEDLING, GROWING, MATURE, DEAD
  *     float health;              // 0-100
  *     glm::vec3 nutrition;       // Recursos disponibles
+ * public:
+ *     void update(float deltaTime) override;
+ *     void render(class Renderer* renderer) override;
  * };
  */
-struct Light {
+struct Plant {
     glm::vec3 position;  ///< Posición en el mundo (X, Y, Z)
     glm::vec3 color;     ///< Color RGB (determina tipo visualmente)
     glm::vec3 velocity;  ///< Velocidad (0, 0, 0) para plantas estáticas  
     int type;            ///< PlantType: GRASS=0, BUSH=1, TREE=2
-    float scale;         ///< Escala procedural (0.8-1.2) para variedad
+    float scale;         ///< Escala procedural (0.8-1.3) para variedad
     float rotation;      ///< Rotación Y en radianes
 };
 

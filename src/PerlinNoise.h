@@ -117,7 +117,7 @@ public:
         float radius = 0.15f;
         
         for (int i = 0; i <= segments; ++i) {
-            float angle = (i / (float)segments) * glm::two_pi<float>();
+            float angle = (i / (float)segments) * 6.283185307179586f; // 2*pi
             float x = cos(angle) * radius;
             float z = sin(angle) * radius;
             
@@ -160,10 +160,10 @@ public:
         
         // Generar esfera
         for (int ring = 0; ring <= rings; ++ring) {
-            float phi = (ring / (float)rings) * glm::pi<float>();
+            float phi = (ring / (float)rings) * 3.141592653589793f; // pi
             
             for (int seg = 0; seg <= segs; ++seg) {
-                float theta = (seg / (float)segs) * glm::two_pi<float>();
+                float theta = (seg / (float)segs) * 6.283185307179586f; // 2*pi
                 
                 float x = radius * sin(phi) * cos(theta);
                 float y = radius * cos(phi) + radius;
@@ -209,7 +209,7 @@ public:
         float trunkHeight = height * 0.3f;
         
         for (int i = 0; i <= trunkSegs; ++i) {
-            float angle = (i / (float)trunkSegs) * glm::two_pi<float>();
+            float angle = (i / (float)trunkSegs) * 6.283185307179586f; // 2*pi
             float x = cos(angle) * trunkRadius;
             float z = sin(angle) * trunkRadius;
             
@@ -236,7 +236,7 @@ public:
         float conicHeight = height * 0.7f;
         
         for (int i = 0; i <= conicSegs; ++i) {
-            float angle = (i / (float)conicSegs) * glm::two_pi<float>();
+            float angle = (i / (float)conicSegs) * 6.283185307179586f; // 2*pi
             float x = cos(angle) * conicRadius;
             float z = sin(angle) * conicRadius;
             

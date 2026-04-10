@@ -28,11 +28,11 @@ private:
     
     // VARIABLES GRÁFICAS
     GLFWwindow* window;
-    unsigned int shaderProgram;      // Programa para puntos de luz
+    unsigned int shaderProgram;      // Programa para renderizar plantas
     unsigned int terrainShaderProgram; // Programa para el terreno
-    unsigned int VAO, VBO;           // Para puntos de luz
+    unsigned int VAO, VBO;           // Para plantas
     unsigned int terrainVAO, terrainVBO, terrainEBO; // Para terreno
-    std::vector<Light> lights;
+    std::vector<Plant> plants;       // Lista de plantas en el mundo
     
     // VARIABLES DEL TERRENO
     int terrainVertexCount;
@@ -73,8 +73,8 @@ private:
     void generatePlantGeometry();  // NEW: Generar geometría procedural de plantas
     glm::vec3 getRaycastHit(double mouseX, double mouseY);
     void renderTerrain();
-    void renderPlants();  // NEW: Renderizar plantas con geometría
-    void addRandomLight(const glm::vec3& position);
+    void renderPlants();  // Renderizar plantas con geometría procedural
+    void addPlant(const glm::vec3& position);  // Agregar nueva planta en posición
     
     // MÉTODOS PRIVADOS DE RENDERIZADO
     void renderSplashScreen();

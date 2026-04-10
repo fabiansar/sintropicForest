@@ -48,7 +48,7 @@ class GraphicsEngine {
     
     // Lógica de juego
     void update();
-    void addRandomLight();
+    void addPlant(const glm::vec3& position);
     
     // Gestión de cámara
     // Variables de cámara mezcladas con todo
@@ -62,7 +62,7 @@ class GraphicsEngine {
 ### 2. **Datos No Separados de Lógica**
 ```cpp
 // Datos de planta + lógica de generación en un solo lugar
-struct Light {  // Nombre confuso: "Light" en lugar de "Plant"
+struct Plant {  // Renombrado de "Light" en abril 11 (claridad semántica)
     glm::vec3 position;
     glm::vec3 color;
     glm::vec3 velocity;
@@ -70,7 +70,7 @@ struct Light {  // Nombre confuso: "Light" en lugar de "Plant"
 };
 
 // Generación directa en GraphicsEngine
-void addRandomLight(const glm::vec3& position) { ... }
+void addPlant(const glm::vec3& position) { ... }
 ```
 **Impacto**: 
 - Difícil agregar nuevas propiedades de plantas
@@ -366,7 +366,7 @@ private:
 - [ ] `src/Renderer.h` / `src/Renderer.cpp`
 
 **Cambios**:
-- Mover datos de Plant de `struct Light` a `class Plant`
+- ~~Mover datos de Plant de `struct Light` a `class Plant`~~ ✅ COMPLETADO (Renombrado en abril 11)
 - Mover lógica de cámara a `Camera`
 - Extraer renderizado a `Renderer`
 - GraphicsEngine coordina, pero no implementa
@@ -409,7 +409,7 @@ private:
 enum PlantType { GRASS, BUSH, TREE, FLOWER };  // Modificar enum
 const float PLANT_PROBABILITY_FLOWER = 0.05f;  // Agregar constante
 
-// En addRandomLight():
+// En addPlant() [Renombrado de addRandomLight() en abril 11]:
 // Ajustar probabilidades, agregar caso...
 // En renderGameScene():
 // Agregar tamaño renderizado...

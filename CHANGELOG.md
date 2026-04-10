@@ -53,8 +53,10 @@
 
 ### 🔥 Breaking Changes
 
-- `struct Light` con nuevos campos (`scale`, `rotation`)
-  - Anterior código que crea lights debe actualizar
+- `struct Plant` (renombrado de `Light`)
+  - Nuevos campos: `scale` (0.8-1.3), `rotation` (radianes 0-2π)
+  - Anterior código que usaba `Light` debe actualizar referencias
+  - Métodos renombrados: `addRandomLight()` → `addPlant()`
 
 ### 📋 Documentación
 
@@ -63,6 +65,7 @@
 - Added: STATUS.md (matrix de componentes)
 - Updated: README.md (referencias nuevos docs)
 - Updated: ARQUITECTURA_ESCALABLE.md (diagramas Mermaid)
+- Updated: CHANGELOG.md (struct Light → Plant renaming)
 
 ### 🧩 Nuevo en el Código
 
