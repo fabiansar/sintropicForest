@@ -328,9 +328,9 @@ void GraphicsEngine::addPlant(const glm::vec3& position) {
 
     // Determinar tipo de planta por probabilidad
     float rand = dist_rand(gen);
-    if (rand < PLANT_PROBABILITY_TREE) {
+    if (rand < plantProbabilityTree) {
         newPlant.type = TREE;
-    } else if (rand < PLANT_PROBABILITY_TREE + PLANT_PROBABILITY_BUSH) {
+    } else if (rand < plantProbabilityTree + plantProbabilityBush) {
         newPlant.type = BUSH;
     } else {
         newPlant.type = GRASS;
@@ -631,16 +631,34 @@ void GraphicsEngine::renderSettings() {
 
     ImVec2 center = ImGui::GetMainViewport()->GetCenter();
     ImGui::SetNextWindowPos(center, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-    ImGui::SetNextWindowSize(ImVec2(350, 250), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(ImVec2(400, 450), ImGuiCond_Always);
 
-    ImGui::Begin("Settings", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+    ImGui::Begin("Configuración", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 
     ImGui::SliderFloat("Master Volume", &masterVolume, 0.0f, 1.0f);
+    
+    ImGui::Separator();
+    ImGui::Text("Configuracion de Plantas:");
+    ImGui::Separator();
+    
+    // Probabilidades
+    ImGui::SliderFloat("Probabilidad Arboles (%%)", &plantProbabilityTree, 0.0f, 0.5f, "%.2f");
+    ImGui::SliderFloat("Probabilidad Arbustos (%%)", &plantProbabilityBush, 0.0f, 0.5f, "%.2f");
+    ImGui::Text("Probabilidad Hierba: %.2f", 1.0f - plantProbabilityTree - plantProbabilityBush);
+    
+    ImGui::Separator();
+    ImGui::Text("Tamanios de Punto:");
+    ImGui::Separator();
+    
+    // Tamaños
+    ImGui::SliderFloat("Hierba (px)", &plantSizeGrass, 1.0f, 15.0f);
+    ImGui::SliderFloat("Arbusto (px)", &plantSizeBush, 1.0f, 15.0f);
+    ImGui::SliderFloat("Arbol (px)", &plantSizeTree, 1.0f, 20.0f);
     
     ImGui::Spacing();
     ImGui::Spacing();
 
-    if (ImGui::Button("Back", ImVec2(300, 50))) {
+    if (ImGui::Button("Atras", ImVec2(350, 50))) {
         nextState = MENU;
     }
 
@@ -728,14 +746,14 @@ void GraphicsEngine::renderPlants() {
         vertices.push_back(color.g);
         vertices.push_back(color.b);
         
-        // Tamaño del punto (codificado en el vértice)
+        // Tamaño del punto (codificado en el vértice) - CONFIGURABLE
         float pointSize;
         if (plant.type == GRASS) {
-            pointSize = PLANT_SIZE_GRASS;
+            pointSize = plantSizeGrass;
         } else if (plant.type == BUSH) {
-            pointSize = PLANT_SIZE_BUSH;
+            pointSize = plantSizeBush;
         } else {
-            pointSize = PLANT_SIZE_TREE;
+            pointSize = plantSizeTree;
         }
         vertices.push_back(pointSize);
     }

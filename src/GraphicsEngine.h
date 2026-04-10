@@ -43,6 +43,13 @@ private:
     // VARIABLES DE CONFIGURACIÓN
     float masterVolume;
     
+    // CONFIGURACIÓN DE PLANTAS (EDITABLE EN SETTINGS)
+    float plantProbabilityTree = PLANT_PROBABILITY_TREE;
+    float plantProbabilityBush = PLANT_PROBABILITY_BUSH;
+    float plantSizeGrass = PLANT_SIZE_GRASS;
+    float plantSizeBush = PLANT_SIZE_BUSH;
+    float plantSizeTree = PLANT_SIZE_TREE;
+    
     // VARIABLES DE CÁMARA (Vista de Estrategia/Gestión)
     glm::vec3 cameraPos;
     glm::vec3 cameraTarget;      // Centro del mapa que está mirando

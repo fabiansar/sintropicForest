@@ -164,7 +164,7 @@ const float PLANT_CREATION_FLASH_DURATION = 0.5f;  // Segundos
 // ============================================================================
 
 const float TERRAIN_NOISE_SCALE = 0.1f;        ///< Escala del ruido (menor = más ondulado)
-const float TERRAIN_NOISE_HEIGHT = 5.0f;       ///< Altura máxima del terreno
+const float TERRAIN_NOISE_HEIGHT = 10.0f;      ///< Altura máxima del terreno (aumentado para mayor visibilidad)
 const int TERRAIN_NOISE_OCTAVES = 4;           ///< Octavas de Perlin (más = más detalle)
 const float TERRAIN_NOISE_PERSISTENCE = 0.5f;  ///< Persistencia del ruido (0-1)
 
