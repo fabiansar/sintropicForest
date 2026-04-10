@@ -344,12 +344,20 @@ void GraphicsEngine::addPlant(const glm::vec3& position) {
 // ============================================================================
 
 void GraphicsEngine::handleInput() {
+    // Manejar ESC (una vez por pulsación)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-        if (currentState == PLAYING) {
-            nextState = MENU;
-        } else {
-            glfwSetWindowShouldClose(window, true);
+        if (!escapePressed) {  // Solo ejecutar UNA vez por pulsación
+            escapePressed = true;
+            if (currentState == PLAYING) {
+                nextState = MENU;
+            } else if (currentState == SETTINGS) {
+                nextState = MENU;
+            } else if (currentState == MENU) {
+                nextState = MENU;  // Ya estamos en menú, no hacer nada
+            }
         }
+    } else {
+        escapePressed = false;  // Resetear cuando se suelta ESC
     }
 
     if (currentState == PLAYING) {

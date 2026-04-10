@@ -11,6 +11,7 @@ inline const char* vertexShaderSource = R"(
 #version 330 core
 layout (location = 0) in vec3 aPosition;
 layout (location = 1) in vec3 aColor;
+layout (location = 2) in float aPointSize;
 
 out vec3 vertexColor;
 
@@ -21,6 +22,7 @@ uniform mat4 uModel;
 void main()
 {
     gl_Position = uProjection * uView * uModel * vec4(aPosition, 1.0);
+    gl_PointSize = aPointSize;
     vertexColor = aColor;
 }
 )";

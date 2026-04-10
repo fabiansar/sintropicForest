@@ -55,6 +55,7 @@ private:
     glm::vec3 cameraTarget;      // Centro del mapa que está mirando
     float cameraRotation;        // Rotación alrededor del eje Y
     bool leftMousePressed;       // Flag para detectar clicks
+    bool escapePressed = false;  // Flag para detectar ESC (evitar múltiples activaciones)
     double lastMouseX, lastMouseY;
     
     // VARIABLE DE TIEMPO PARA ANIMACIÓN DEL TERRENO
