@@ -2,7 +2,9 @@
 
 #include <vector>
 #include <chrono>
+#include <map>
 #include "Config.h"
+#include "PerlinNoise.h"
 
 // Forward declaration para evitar incluir GLFW aquí
 struct GLFWwindow;
@@ -51,10 +53,27 @@ private:
     // VARIABLE DE TIEMPO PARA ANIMACIÓN DEL TERRENO
     float elapsedTime;           // Tiempo total transcurrido en segundos
     
+    // PERLIN NOISE PARA TERRENO PROCEDURAL
+    PerlinNoise* perlinNoise;
+    
+    // CACHED MATRICES PARA OPTIMIZACIÓN
+    glm::mat4 cachedProjection;
+    glm::mat4 cachedView;
+    glm::mat4 cachedModel;
+    bool projectionDirty;
+    bool viewDirty;
+    
+    // PLANT GEOMETRY MESHES (CACHEADAS)
+    std::map<int, unsigned int> plantVAOs;      // VAO por tipo de planta
+    std::map<int, unsigned int> plantVBOs;      // VBO por tipo de planta
+    std::map<int, unsigned int> plantIndexCounts;  // Índices por tipo
+    
     // MÉTODOS PRIVADOS
     void generateTerrain();
+    void generatePlantGeometry();  // NEW: Generar geometría procedural de plantas
     glm::vec3 getRaycastHit(double mouseX, double mouseY);
     void renderTerrain();
+    void renderPlants();  // NEW: Renderizar plantas con geometría
     void addRandomLight(const glm::vec3& position);
     
     // MÉTODOS PRIVADOS DE RENDERIZADO

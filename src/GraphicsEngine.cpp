@@ -56,8 +56,12 @@ GraphicsEngine::GraphicsEngine()
       cameraRotation(0.0f),
       leftMousePressed(false),
       lastMouseX(0.0), lastMouseY(0.0),
-      elapsedTime(0.0f) {
+      elapsedTime(0.0f),
+      perlinNoise(nullptr),
+      projectionDirty(true),
+      viewDirty(true) {
     splashStartTime = std::chrono::steady_clock::now();
+    perlinNoise = new PerlinNoise(42);  // Seed para consistencia
 }
 
 // ============================================================================
@@ -155,6 +159,9 @@ bool GraphicsEngine::initialize() {
 
     // PASO 9: Generar terreno
     generateTerrain();
+    
+    // PASO 9B: Generar geometría procedural de plantas (NUEVO)
+    generatePlantGeometry();
 
     // PASO 10: Configurar buffers OpenGL para puntos de luz
     glGenVertexArrays(1, &VAO);
@@ -194,17 +201,23 @@ void GraphicsEngine::generateTerrain() {
 
     float step = TERRAIN_SIZE / TERRAIN_RESOLUTION;
 
-    // Generar vértices del grid
+    // Generar vértices del grid CON PERLIN NOISE
     for (int z = 0; z <= TERRAIN_RESOLUTION; ++z) {
         for (int x = 0; x <= TERRAIN_RESOLUTION; ++x) {
-            // Posición
+            // Posición base
             float posX = -TERRAIN_SIZE/2.0f + x * step;
             float posZ = -TERRAIN_SIZE/2.0f + z * step;
+            
+            // Altura usando Perlin Noise para terreno realista
+            float noiseValue = perlinNoise->sample(posX, posZ, 
+                TERRAIN_NOISE_SCALE, TERRAIN_NOISE_PERSISTENCE, TERRAIN_NOISE_OCTAVES);
+            float posY = (noiseValue - 0.5f) * TERRAIN_NOISE_HEIGHT;  // Rangocentrado en 0
+            
             vertices.push_back(posX);
-            vertices.push_back(0.0f);  // Y siempre 0
+            vertices.push_back(posY);
             vertices.push_back(posZ);
             
-            // Normal (siempre hacia arriba)
+            // Normal aproximada (apunta hacia arriba con ligera variación)
             vertices.push_back(0.0f);
             vertices.push_back(1.0f);
             vertices.push_back(0.0f);
@@ -308,22 +321,26 @@ glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
 void GraphicsEngine::addRandomLight(const glm::vec3& position) {
     std::mt19937 gen(std::random_device{}());
     std::uniform_real_distribution<float> dist_rand(0.0f, 1.0f);
+    std::uniform_real_distribution<float> dist_scale(0.8f, 1.3f);  // Escala procedural
+    std::uniform_real_distribution<float> dist_rotation(0.0f, glm::two_pi<float>());  // Rotación
 
     Light newLight;
     newLight.position = position;
     newLight.velocity = glm::vec3(0.0f, 0.0f, 0.0f);  // Estática
+    newLight.scale = dist_scale(gen);  // Variedad procedural
+    newLight.rotation = dist_rotation(gen);  // Rotación random
 
     // Determinar tipo de planta
     float rand = dist_rand(gen);
     if (rand < PLANT_PROBABILITY_TREE) {
         newLight.type = TREE;
-        newLight.color = glm::vec3(0.1f, 0.4f, 0.1f);  // Verde oscuro para árbol
+        newLight.color = glm::vec3(0.1f, 0.5f, 0.05f);  // Verde oscuro para árbol
     } else if (rand < PLANT_PROBABILITY_TREE + PLANT_PROBABILITY_BUSH) {
         newLight.type = BUSH;
-        newLight.color = glm::vec3(0.2f, 0.5f, 0.15f);  // Verde medio para arbusto
+        newLight.color = glm::vec3(0.2f, 0.7f, 0.1f);  // Verde medio para arbusto
     } else {
         newLight.type = GRASS;
-        newLight.color = glm::vec3(0.3f, 0.6f, 0.2f);   // Verde claro para hierba
+        newLight.color = glm::vec3(0.3f, 0.8f, 0.2f);   // Verde claro para hierba
     }
 
     lights.push_back(newLight);
@@ -586,36 +603,8 @@ void GraphicsEngine::renderGameScene() {
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-    // Renderizar 3 pasadas: hierba, arbustos, árboles (con diferentes tamaños)
-    const int plantSizes[] = { 3, 5, 8 };  // GRASS, BUSH, TREE
-    
-    for (int plantType = 0; plantType < 3; ++plantType) {
-        std::vector<float> vertices;
-        
-        for (const auto& light : lights) {
-            if (light.type == plantType) {
-                vertices.push_back(light.position.x);
-                vertices.push_back(light.position.y);
-                vertices.push_back(light.position.z);
-                vertices.push_back(light.color.r);
-                vertices.push_back(light.color.g);
-                vertices.push_back(light.color.b);
-            }
-        }
-
-        if (vertices.size() > 0) {
-            glPointSize(plantSizes[plantType]);
-            
-            glBindBuffer(GL_ARRAY_BUFFER, VBO);
-            glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
-            
-            glBindVertexArray(VAO);
-            glDrawArrays(GL_POINTS, 0, vertices.size() / 6);
-        }
-    }
-
-    // Restaurar tamaño de punto
-    glPointSize(5.0f);
+    // ===== RENDERIZAR PLANTAS CON GEOMETRÍA PROCEDURAL (NUEVO) =====
+    renderPlants();
 
     // ===== UI INFORMACIÓN =====
     renderTerrain();  // Esta función solo maneja ImGui
@@ -719,6 +708,102 @@ void GraphicsEngine::renderCredits() {
 }
 
 // ============================================================================
+// GENERAR GEOMETRÍA DE PLANTAS (PROCEDURAL)
+// ============================================================================
+
+void GraphicsEngine::generatePlantGeometry() {
+    // Generar geometría para cada tipo de planta y cachearla
+    
+    // GRASS - Pequeno cilindro
+    auto grassMesh = PlantGeometry::GenerateGrass(0.8f);
+    unsigned int grassVAO, grassVBO;
+    glGenVertexArrays(1, &grassVAO);
+    glGenBuffers(1, &grassVBO);
+    glBindVertexArray(grassVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, grassVBO);
+    glBufferData(GL_ARRAY_BUFFER, grassMesh.vertices.size() * sizeof(float), grassMesh.vertices.data(), GL_STATIC_DRAW);
+    
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    
+    plantVAOs[GRASS] = grassVAO;
+    plantVBOs[GRASS] = grassVBO;
+    plantIndexCounts[GRASS] = grassMesh.vertices.size() / 6;
+    
+    // BUSH - Esfera
+    auto bushMesh = PlantGeometry::GenerateBush(0.6f);
+    unsigned int bushVAO, bushVBO;
+    glGenVertexArrays(1, &bushVAO);
+    glGenBuffers(1, &bushVBO);
+    glBindVertexArray(bushVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, bushVBO);
+    glBufferData(GL_ARRAY_BUFFER, bushMesh.vertices.size() * sizeof(float), bushMesh.vertices.data(), GL_STATIC_DRAW);
+    
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    
+    plantVAOs[BUSH] = bushVAO;
+    plantVBOs[BUSH] = bushVBO;
+    plantIndexCounts[BUSH] = bushMesh.vertices.size() / 6;
+    
+    // TREE - Cono + Cilindro
+    auto treeMesh = PlantGeometry::GenerateTree(2.5f);
+    unsigned int treeVAO, treeVBO;
+    glGenVertexArrays(1, &treeVAO);
+    glGenBuffers(1, &treeVBO);
+    glBindVertexArray(treeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, treeVBO);
+    glBufferData(GL_ARRAY_BUFFER, treeMesh.vertices.size() * sizeof(float), treeMesh.vertices.data(), GL_STATIC_DRAW);
+    
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    
+    plantVAOs[TREE] = treeVAO;
+    plantVBOs[TREE] = treeVBO;
+    plantIndexCounts[TREE] = treeMesh.vertices.size() / 6;
+}
+
+void GraphicsEngine::renderPlants() {
+    glUseProgram(shaderProgram);
+    
+    // Matrices cacheadas (OPTIMIZACIÓN)
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f),
+        (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
+    
+    glm::vec3 camPos = cameraTarget + glm::vec3(
+        cos(glm::radians(cameraRotation)) * CAMERA_DISTANCE,
+        CAMERA_HEIGHT,
+        sin(glm::radians(cameraRotation)) * CAMERA_DISTANCE
+    );
+    
+    glm::mat4 view = glm::lookAt(camPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
+    
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uProjection"), 1, GL_FALSE, glm::value_ptr(projection));
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uView"), 1, GL_FALSE, glm::value_ptr(view));
+    
+    // Renderizar cada planta con su geometría procedural
+    for (const auto& light : lights) {
+        if (plantVAOs.find(light.type) == plantVAOs.end()) continue;
+        
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, light.position);
+        model = glm::rotate(model, light.rotation, glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(light.scale));
+        
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uModel"), 1, GL_FALSE, glm::value_ptr(model));
+        
+        glBindVertexArray(plantVAOs[light.type]);
+        glDrawArrays(GL_TRIANGLES, 0, plantIndexCounts[light.type]);
+    }
+}
+
+// ============================================================================
 // LIMPIEZA Y ESTADO
 // ============================================================================
 
@@ -735,6 +820,17 @@ void GraphicsEngine::cleanup() {
     glDeleteBuffers(1, &terrainVBO);
     glDeleteBuffers(1, &terrainEBO);
     glDeleteProgram(terrainShaderProgram);
+    
+    // Limpiar geometría de plantas
+    for (auto& pair : plantVAOs) {
+        glDeleteVertexArrays(1, &pair.second);
+    }
+    for (auto& pair : plantVBOs) {
+        glDeleteBuffers(1, &pair.second);
+    }
+    
+    // Limpiar Perlin Noise
+    if (perlinNoise) delete perlinNoise;
 
     glfwDestroyWindow(window);
     glfwTerminate();

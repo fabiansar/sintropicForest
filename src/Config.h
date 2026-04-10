@@ -144,6 +144,15 @@ const float LIGHT_INFLUENCE_DISTANCE = 15.0f;   ///< Distancia a la que plantas 
                                                ///< el terreno (solo visual, no interactivo)
 
 // ============================================================================
+// 4B. CONFIGURACIÓN DE PERLIN NOISE - TERRENO REALISTA
+// ============================================================================
+
+const float TERRAIN_NOISE_SCALE = 0.1f;        ///< Escala del ruido (menor = más ondulado)
+const float TERRAIN_NOISE_HEIGHT = 5.0f;       ///< Altura máxima del terreno
+const int TERRAIN_NOISE_OCTAVES = 4;           ///< Octavas de Perlin (más = más detalle)
+const float TERRAIN_NOISE_PERSISTENCE = 0.5f;  ///< Persistencia del ruido (0-1)
+
+// ============================================================================
 // 5A. ENUMERACIONES - ESTADOS DEL JUEGO
 // ============================================================================
 
@@ -182,17 +191,23 @@ enum GameState {
  *   X, Z: en el plano del terreno (-50 a +50)
  *   Y: altura, típicamente 2.0f para plantas
  * 
- * - color: Color RGB (0.0f a 1.0f cadab componente)
- *   GRASS:  (0.3, 0.6, 0.2) - Verde claro
- *   BUSH:   (0.2, 0.5, 0.15) - Verde medio
- *   TREE:   (0.1, 0.4, 0.1) - Verde oscuro
+ * - color: Color RGB (0.0f a 1.0f cada componente)
+ *   GRASS:  (0.3, 0.8, 0.2) - Verde claro
+ *   BUSH:   (0.2, 0.7, 0.1) - Verde medio
+ *   TREE:   (0.1, 0.5, 0.05) - Verde oscuro
  * 
  * - velocity: Velocidad de movimiento
  *   Actualmente SIEMPRE (0, 0, 0) porque las plantas son estáticas.
  *   En futuras extensiones podría usarse para crecimiento o movimiento
  * 
  * - type: Categoría de planta (GRASS, BUSH, TREE)
- *   Determina tamaño renderizado (3px, 5px, 8px)
+ *   Determina geometría renderizada proceduralmente
+ * 
+ * - scale: Factor de escala procedural (randomizado 0.8-1.2)
+ *   Para variedad visual entre plantas del mismo tipo
+ * 
+ * - rotation: Rotación Y en radianes (randomizada)
+
  * 
  * EXTENSIÓN FUTURA:
  * struct Plant : public Entity {
@@ -203,10 +218,12 @@ enum GameState {
  * };
  */
 struct Light {
-    glm::vec3 position;  ///< Posición en el mundo (X, 2.0f, Z) típicamente
+    glm::vec3 position;  ///< Posición en el mundo (X, Y, Z)
     glm::vec3 color;     ///< Color RGB (determina tipo visualmente)
-    glm::vec3 velocity;  ///< Velocidad (0, 0, 0) para plantas estáticas
+    glm::vec3 velocity;  ///< Velocidad (0, 0, 0) para plantas estáticas  
     int type;            ///< PlantType: GRASS=0, BUSH=1, TREE=2
+    float scale;         ///< Escala procedural (0.8-1.2) para variedad
+    float rotation;      ///< Rotación Y en radianes
 };
 
 // ============================================================================
