@@ -321,26 +321,19 @@ glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
 void GraphicsEngine::addPlant(const glm::vec3& position) {
     std::mt19937 gen(std::random_device{}());
     std::uniform_real_distribution<float> dist_rand(0.0f, 1.0f);
-    std::uniform_real_distribution<float> dist_scale(0.8f, 1.3f);  // Escala procedural
-    std::uniform_real_distribution<float> dist_rotation(0.0f, glm::two_pi<float>());  // Rotación
 
     Plant newPlant;
     newPlant.position = position;
-    newPlant.velocity = glm::vec3(0.0f, 0.0f, 0.0f);  // Estática
-    newPlant.scale = dist_scale(gen);  // Variedad procedural
-    newPlant.rotation = dist_rotation(gen);  // Rotación random
+    newPlant.createdTime = elapsedTime;  // Guardar tiempo de creación para animación
 
-    // Determinar tipo de planta
+    // Determinar tipo de planta por probabilidad
     float rand = dist_rand(gen);
     if (rand < PLANT_PROBABILITY_TREE) {
         newPlant.type = TREE;
-        newPlant.color = glm::vec3(0.1f, 0.5f, 0.05f);  // Verde oscuro para árbol
     } else if (rand < PLANT_PROBABILITY_TREE + PLANT_PROBABILITY_BUSH) {
         newPlant.type = BUSH;
-        newPlant.color = glm::vec3(0.2f, 0.7f, 0.1f);  // Verde medio para arbusto
     } else {
         newPlant.type = GRASS;
-        newPlant.color = glm::vec3(0.3f, 0.8f, 0.2f);   // Verde claro para hierba
     }
 
     plants.push_back(newPlant);
@@ -436,24 +429,8 @@ void GraphicsEngine::update(float deltaTime) {
     // Actualizar tiempo transcurrido
     elapsedTime += deltaTime;
 
-    // Actualizar posición de plantas (aunque no se muevan, mantenemos la lógica)
-    for (auto& plant : plants) {
-        plant.position += plant.velocity;
-
-        // Mantener en el terreno
-        const float boundX = TERRAIN_SIZE/2.0f;
-        const float boundZ = TERRAIN_SIZE/2.0f;
-        
-        // Rebotar en los límites
-        if (plant.position.x < -boundX || plant.position.x > boundX) {
-            plant.velocity.x *= -1.0f;
-            plant.position.x = glm::clamp(plant.position.x, -boundX, boundX);
-        }
-        if (plant.position.z < -boundZ || plant.position.z > boundZ) {
-            plant.velocity.z *= -1.0f;
-            plant.position.z = glm::clamp(plant.position.z, -boundZ, boundZ);
-        }
-    }
+    // Las plantas son estáticas, no necesitan actualizar posición
+    // (La animación de color se realiza en renderPlants())
 
     // Gestionar splash screen
     if (currentState == SPLASH) {
@@ -712,67 +689,83 @@ void GraphicsEngine::renderCredits() {
 // ============================================================================
 
 void GraphicsEngine::generatePlantGeometry() {
-    // Generar geometría para cada tipo de planta y cachearla
-    
-    // GRASS - Pequeno cilindro
-    auto grassMesh = PlantGeometry::GenerateGrass(0.8f);
-    unsigned int grassVAO, grassVBO;
-    glGenVertexArrays(1, &grassVAO);
-    glGenBuffers(1, &grassVBO);
-    glBindVertexArray(grassVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, grassVBO);
-    glBufferData(GL_ARRAY_BUFFER, grassMesh.vertices.size() * sizeof(float), grassMesh.vertices.data(), GL_STATIC_DRAW);
-    
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-    
-    plantVAOs[GRASS] = grassVAO;
-    plantVBOs[GRASS] = grassVBO;
-    plantIndexCounts[GRASS] = grassMesh.vertices.size() / 6;
-    
-    // BUSH - Esfera
-    auto bushMesh = PlantGeometry::GenerateBush(0.6f);
-    unsigned int bushVAO, bushVBO;
-    glGenVertexArrays(1, &bushVAO);
-    glGenBuffers(1, &bushVBO);
-    glBindVertexArray(bushVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, bushVBO);
-    glBufferData(GL_ARRAY_BUFFER, bushMesh.vertices.size() * sizeof(float), bushMesh.vertices.data(), GL_STATIC_DRAW);
-    
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-    
-    plantVAOs[BUSH] = bushVAO;
-    plantVBOs[BUSH] = bushVBO;
-    plantIndexCounts[BUSH] = bushMesh.vertices.size() / 6;
-    
-    // TREE - Cono + Cilindro
-    auto treeMesh = PlantGeometry::GenerateTree(2.5f);
-    unsigned int treeVAO, treeVBO;
-    glGenVertexArrays(1, &treeVAO);
-    glGenBuffers(1, &treeVBO);
-    glBindVertexArray(treeVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, treeVBO);
-    glBufferData(GL_ARRAY_BUFFER, treeMesh.vertices.size() * sizeof(float), treeMesh.vertices.data(), GL_STATIC_DRAW);
-    
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-    
-    plantVAOs[TREE] = treeVAO;
-    plantVBOs[TREE] = treeVBO;
-    plantIndexCounts[TREE] = treeMesh.vertices.size() / 6;
+    // Ya no se usa - Las plantas se renderizan como puntos simples
 }
 
 void GraphicsEngine::renderPlants() {
     glUseProgram(shaderProgram);
     
-    // Matrices cacheadas (OPTIMIZACIÓN)
+    // Preparar datos de vértices para todos los puntos
+    std::vector<float> vertices;
+    
+    for (const auto& plant : plants) {
+        // Calcular color con animación flash al crear
+        glm::vec3 color;
+        float timeSinceCreation = elapsedTime - plant.createdTime;
+        
+        // Determinar color base según tipo
+        if (plant.type == GRASS) {
+            color = PLANT_COLOR_GRASS;
+        } else if (plant.type == BUSH) {
+            color = PLANT_COLOR_BUSH;
+        } else {
+            color = PLANT_COLOR_TREE;
+        }
+        
+        // Flash blanco al create (primeros 0.5 segundos)
+        if (timeSinceCreation < PLANT_CREATION_FLASH_DURATION) {
+            float flashIntensity = 1.0f - (timeSinceCreation / PLANT_CREATION_FLASH_DURATION);
+            color = glm::mix(color, glm::vec3(1.0f, 1.0f, 1.0f), flashIntensity * 0.7f);
+        }
+        
+        // Posición
+        vertices.push_back(plant.position.x);
+        vertices.push_back(plant.position.y);
+        vertices.push_back(plant.position.z);
+        
+        // Color
+        vertices.push_back(color.r);
+        vertices.push_back(color.g);
+        vertices.push_back(color.b);
+        
+        // Tamaño del punto (codificado en el vértice)
+        float pointSize;
+        if (plant.type == GRASS) {
+            pointSize = PLANT_SIZE_GRASS;
+        } else if (plant.type == BUSH) {
+            pointSize = PLANT_SIZE_BUSH;
+        } else {
+            pointSize = PLANT_SIZE_TREE;
+        }
+        vertices.push_back(pointSize);
+    }
+    
+    // Inicializar VAO/VBO si no existen
+    if (VAO == 0) {
+        glGenVertexArrays(1, &VAO);
+        glGenBuffers(1, &VBO);
+    }
+    
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    
+    // Cargar datos
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_DYNAMIC_DRAW);
+    
+    // Configurar atributos
+    // Posición (3 floats)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    
+    // Color (3 floats)
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    
+    // Tamaño (1 float)
+    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+    
+    // Configurar matrices
     glm::mat4 projection = glm::perspective(glm::radians(45.0f),
         (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
     
@@ -783,24 +776,17 @@ void GraphicsEngine::renderPlants() {
     );
     
     glm::mat4 view = glm::lookAt(camPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 model = glm::mat4(1.0f);
     
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uProjection"), 1, GL_FALSE, glm::value_ptr(projection));
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uView"), 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uModel"), 1, GL_FALSE, glm::value_ptr(model));
     
-    // Renderizar cada planta con su geometría procedural
-    for (const auto& plant : plants) {
-        if (plantVAOs.find(plant.type) == plantVAOs.end()) continue;
-        
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, plant.position);
-        model = glm::rotate(model, plant.rotation, glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(plant.scale));
-        
-        glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uModel"), 1, GL_FALSE, glm::value_ptr(model));
-        
-        glBindVertexArray(plantVAOs[plant.type]);
-        glDrawArrays(GL_TRIANGLES, 0, plantIndexCounts[plant.type]);
-    }
+    // Renderizar puntos
+    glEnable(GL_PROGRAM_POINT_SIZE);
+    glPointSize(5.0f);  // Tamaño base (se modifica en vertex shader)
+    glDrawArrays(GL_POINTS, 0, plants.size());
+    glDisable(GL_PROGRAM_POINT_SIZE);
 }
 
 // ============================================================================
@@ -820,14 +806,6 @@ void GraphicsEngine::cleanup() {
     glDeleteBuffers(1, &terrainVBO);
     glDeleteBuffers(1, &terrainEBO);
     glDeleteProgram(terrainShaderProgram);
-    
-    // Limpiar geometría de plantas
-    for (auto& pair : plantVAOs) {
-        glDeleteVertexArrays(1, &pair.second);
-    }
-    for (auto& pair : plantVBOs) {
-        glDeleteBuffers(1, &pair.second);
-    }
     
     // Limpiar Perlin Noise
     if (perlinNoise) delete perlinNoise;

@@ -101,8 +101,8 @@ const float PLANT_DEATH_THRESHOLD = 50.0f;     ///< % de salud para morir
  *   270° = Norte (abajo)
  */
 
-const float CAMERA_HEIGHT = 40.0f;           ///< Altura absoluta de la cámara (eje Y)
-const float CAMERA_DISTANCE = 30.0f;         ///< Radio de órbita alrededor del objetivo
+const float CAMERA_HEIGHT = 50.0f;           ///< Altura absoluta de la cámara (eje Y)
+const float CAMERA_DISTANCE = 45.0f;         ///< Radio de órbita alrededor del objetivo
 const float CAMERA_ROTATION_SPEED = 3.0f;    ///< Multiplicador de velocidad con Q/E
 const float CAMERA_MOVEMENT_SPEED = 20.0f;   ///< Velocidad de movimiento WASD
 
@@ -144,6 +144,22 @@ const float LIGHT_INFLUENCE_DISTANCE = 15.0f;   ///< Distancia a la que plantas 
                                                ///< el terreno (solo visual, no interactivo)
 
 // ============================================================================
+// 4C. COLORES DE PLANTAS (VERDE-MARRÓN)
+// ============================================================================
+
+const glm::vec3 PLANT_COLOR_GRASS = glm::vec3(0.4f, 0.8f, 0.2f);   // Verde claro
+const glm::vec3 PLANT_COLOR_BUSH = glm::vec3(0.3f, 0.6f, 0.2f);    // Verde oscuro
+const glm::vec3 PLANT_COLOR_TREE = glm::vec3(0.5f, 0.3f, 0.1f);    // Marrón
+
+// Tamaños de punto para cada tipo (en píxeles OpenGL)
+const float PLANT_SIZE_GRASS = 3.0f;   // Pequeño
+const float PLANT_SIZE_BUSH = 6.0f;    // Medio
+const float PLANT_SIZE_TREE = 10.0f;   // Grande
+
+// Animación al crear (flash de color)
+const float PLANT_CREATION_FLASH_DURATION = 0.5f;  // Segundos
+
+// ============================================================================
 // 4B. CONFIGURACIÓN DE PERLIN NOISE - TERRENO REALISTA
 // ============================================================================
 
@@ -182,51 +198,18 @@ enum GameState {
  * ESTRUCTURA PLANT
  * 
  * Representa UNA PLANTA individual en el mundo 3D.
- * 
- * Anteriormente se llamaba "struct Light" (renombrada en abril 11 para claridad).
- * Las plantas son los objetos principales del sistema, no fuentes de luz.
+ * Renderizada como punto de luz simple con color verde-marrón.
  * 
  * Campos:
  * - position: Ubicación en el mundo (X, Y, Z)
- *   X, Z: en el plano del terreno (-50 a +50)
- *   Y: altura, típicamente 2.0f para plantas
- * 
- * - color: Color RGB (0.0f a 1.0f cada componente)
- *   GRASS:  (0.3, 0.8, 0.2) - Verde claro
- *   BUSH:   (0.2, 0.7, 0.1) - Verde medio
- *   TREE:   (0.1, 0.5, 0.05) - Verde oscuro
- * 
- * - velocity: Velocidad de movimiento
- *   Actualmente SIEMPRE (0, 0, 0) porque las plantas son estáticas.
- *   En futuras extensiones podría usarse para crecimiento o movimiento
- * 
- * - type: Categoría de planta (GRASS, BUSH, TREE)
- *   Determina geometría renderizada proceduralmente
- * 
- * - scale: Factor de escala procedural (randomizado 0.8-1.3)
- *   Para variedad visual entre plantas del mismo tipo
- * 
- * - rotation: Rotación Y en radianes (randomizada)
- * 
- * EXTENSIÓN FUTURA:
- * class Plant : public Entity {
- * private:
- *     int age;                   // En segundos
- *     PlantState state;          // SEEDLING, GROWING, MATURE, DEAD
- *     float health;              // 0-100
- *     glm::vec3 nutrition;       // Recursos disponibles
- * public:
- *     void update(float deltaTime) override;
- *     void render(class Renderer* renderer) override;
- * };
+ * - type: Tipo de planta (GRASS=pequeña, BUSH=media, TREE=grande)
+ * - createdTime: Para animación de color al crear
+ * - baseColor: Verde para GRASS, Marrón para TREE
  */
 struct Plant {
-    glm::vec3 position;  ///< Posición en el mundo (X, Y, Z)
-    glm::vec3 color;     ///< Color RGB (determina tipo visualmente)
-    glm::vec3 velocity;  ///< Velocidad (0, 0, 0) para plantas estáticas  
-    int type;            ///< PlantType: GRASS=0, BUSH=1, TREE=2
-    float scale;         ///< Escala procedural (0.8-1.3) para variedad
-    float rotation;      ///< Rotación Y en radianes
+    glm::vec3 position;        ///< Posición en el mundo
+    int type;                  ///< PlantType: GRASS=0, BUSH=1, TREE=2
+    float createdTime;         ///< Tiempo de creación para animación
 };
 
 // ============================================================================
