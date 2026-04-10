@@ -52,12 +52,16 @@ src/
 ├── GraphicsEngine.h/cpp      ← Motor gráfico (coordinador)
 ├── Config.h                  ← Configuración centralizada
 ├── Shaders.h                 ← Código GLSL
+├── PerlinNoise.h             ← Generador de ruido + geometría procedural
 └── CMakeLists.txt            ← Build configuration
 
-docs/
+docs/ (Documentación)
 ├── QUICK_START.md            ← Compilación rápida
 ├── README.md                 ← Este archivo
-├── ARQUITECTURA_ESCALABLE.md ← Diseño y patrones
+├── ARQUITECTURA_ESCALABLE.md ← Diseño y patrones (✨ CON DIAGRAMAS)
+├── API_REFERENCE.md          ← ✨ NUEVO: Referencia completa de API
+├── STATUS.md                 ← ✨ NUEVO: Estado de componentes
+├── TROUBLESHOOTING.md        ← ✨ NUEVO: Solución de problemas
 ├── EXTENSIBILIDAD_Y_ESCALABILIDAD.md ← Cómo agregar features
 ├── GUIA_PARA_NUEVOS_DESARROLLADORES.md ← Onboarding
 ├── DOCUMENTACION_TECNICA.md  ← Deep dive del código

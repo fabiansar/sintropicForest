@@ -97,22 +97,64 @@ enum PlantType { GRASS, BUSH, TREE };
 
 ### 1. **Separación en Capas (Layered Architecture)**
 
+**Diagrama Propuesto (Versión 2.0)**:
+
+```mermaid
+graph TD
+    A["main.cpp<br/>(Application Entry)"] --> B["Game Manager<br/>(Coordinator)"]
+    B --> C["Entity Manager<br/>(Plants, Objects)"]
+    B --> D["Renderer<br/>(Graphics)"]
+    B --> E["Input Manager<br/>(Keyboard, Mouse)"]
+    B --> F["Event System<br/>(Communication)"]
+    B --> G["Audio Manager<br/>(Sound)"]
+    
+    C --> H["Entity (Base Class)"]
+    H --> I["Plant"]
+    H --> J["Rock"]
+    H --> K["Animal"]
+    
+    D --> L["Camera"]
+    D --> M["Shader System"]
+    D --> N["Lighting"]
+    
+    L --> O["OpenGL Engine"]
+    M --> O
+    N --> O
+    O --> P["GPU"]
+    
+    style A fill:#90EE90
+    style B fill:#87CEEB
+    style O fill:#FFB6C1
 ```
-┌─────────────────────────────────────────┐
-│        PRESENTACIÓN (UI Layer)          │  main.cpp
-├─────────────────────────────────────────┤
-│      LÓGICA DE JUEGO (Game Logic)       │  GameManager.h/cpp
-├─────────────────────────────────────────┤
-│    SISTEMA DE ENTIDADES (Entity System) │  Entity.h, Plant.h, EntityManager.h
-├─────────────────────────────────────────┤
-│   RENDERIZADO (Graphics/Rendering)      │  Renderer.h/cpp, Camera.h/cpp
-├─────────────────────────────────────────┤
-│   SUBSISTEMAS (Input, Events, Audio)    │  InputManager.h, EventSystem.h
-├─────────────────────────────────────────┤
-│     UTILIDADES (Config, Logger, Utils)  │  Config.h, Logger.h
-├─────────────────────────────────────────┤
-│    PLATAFORMA (OpenGL, GLFW, ImGui)     │  Low-level APIs
-└─────────────────────────────────────────┘
+
+**Comparación: Actual vs Propuesto**:
+
+```mermaid
+graph LR
+    subgraph Current["❌ ACTUAL (Monolítico)"]
+        G1["GraphicsEngine<br/>700+ líneas<br/>TODAS las responsabilidades"]
+    end
+    
+    subgraph Proposed["✅ PROPUESTO (Modular)"]
+        G2["Main<br/>Coordinador"]
+        G3["GameManager<br/>Lógica"]
+        G4["Renderer<br/>Gráficos"]
+        G5["InputManager<br/>Entrada"]
+        G6["EntityManager<br/>Entidades"]
+    end
+    
+    G1 -->|Refactor| G2
+    G2 --> G3
+    G2 --> G4
+    G2 --> G5
+    G2 --> G6
+    
+    style G1 fill:#FFB6C1
+    style G2 fill:#90EE90
+    style G3 fill:#87CEEB
+    style G4 fill:#FFD700
+    style G5 fill:#DDA0DD
+    style G6 fill:#F08080
 ```
 
 ### 2. **Nuevas Clases Sugeridas**
