@@ -267,22 +267,22 @@ Genera malla de árbol (cono + cilindro).
 
 **Descripción**: Representa una planta individual en el mundo 3D.
 
-**Nota**: Nombre históricamente "Light", debería ser "Plant" (refactorización pendiente).
+**Nota**: Anteriormente llamado "Light", renombrado a "Plant" en abril 2026 para claridad semántica.
 
 ```cpp
-struct Light {
+struct Plant {
     glm::vec3 position;   // Posición (X, Y, Z)
     glm::vec3 color;      // Color RGB (0-1)
-    glm::vec3 velocity;   // Velocidad (típicamente 0,0,0)
+    glm::vec3 velocity;   // Velocidad (típicamente 0,0,0 para plantas estáticas)
     int type;             // PlantType (GRASS=0, BUSH=1, TREE=2)
     float scale;          // Factor de escala (0.8-1.3)
-    float rotation;       // Rotación Y en radianes
+    float rotation;       // Rotación Y en radianes (0-2π)
 };
 ```
 
 **Ejemplo**:
 ```cpp
-Light myPlant;
+Plant myPlant;
 myPlant.position = glm::vec3(5.0f, 2.0f, -3.0f);
 myPlant.type = GRASS;
 myPlant.scale = 1.1f;
@@ -428,7 +428,7 @@ Actualmente no hay macros públicas. Potencial para agregar:
 | initialize() | ~500ms | Una sola vez |
 | update() | ~1-2ms | Depende plantas |
 | render() | ~12-16ms | 60 FPS |
-| addRandomLight() | <1ms | O(1) |
+| addPlant() | <1ms | O(1) [Renombrado de addRandomLight()] |
 | generateTerrain() | ~200ms | Una sola vez |
 | Perlin sample() | ~10μs | Por punto |
 

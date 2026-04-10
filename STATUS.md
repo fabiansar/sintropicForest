@@ -56,7 +56,7 @@ Matriz centralizada de estado de componentes, features, y documentación.
 |------|--------|-----------------|
 | Constantes de ventana | ✅ | No |
 | Enumeraciones GameState | ✅ | No |
-| Struct Light (planta) | 🟡 | Agosto 2026: +scale, +rotation |
+| Struct Plant | ✅ | Abril 2026: +scale, +rotation, renombrado de Light |
 | Probabilidades plantas | ✅ | No |
 | Parámetros Perlin Noise | ✅ | **NUEVO** Abril 2026 |
 
