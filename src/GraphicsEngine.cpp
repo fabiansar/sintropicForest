@@ -853,73 +853,128 @@ void GraphicsEngine::renderPlants() {
         return;
     }
 
-    // Fallback rendering: render as GL_POINTS
-    // (Triangle rendering infrastructure prepared but not yet rendering meshes)
-    glUseProgram(shaderProgram);
-    
-    std::vector<float> vertices;
     const auto& plants = gameLogic->getPlants();
-    float gameTime = gameLogic->getElapsedTime();
+    if (plants.empty()) {
+        return;
+    }
+
+    // Collect all vertices and indices from modular plant meshes
+    std::vector<float> allVertices;      // pos(3) + normal(3) + color(4) = 10 per vertex
+    std::vector<unsigned int> allIndices;
+    unsigned int vertexOffset = 0;
     
+    int meshesRendered = 0;
+    int totalAtomsRendered = 0;
+
     for (const auto& plant : plants) {
-        glm::vec3 color;
-        float timeSinceCreation = gameTime - plant.createdTime;
-        
-        if (plant.type == GRASS) {
-            color = PLANT_COLOR_GRASS;
-        } else if (plant.type == BUSH) {
-            color = PLANT_COLOR_BUSH;
-        } else {
-            color = PLANT_COLOR_TREE;
+        if (plant.atomMeshId == 0) {
+            continue;  // No mesh created yet
         }
-        
-        if (timeSinceCreation < PLANT_CREATION_FLASH_DURATION) {
-            float flashIntensity = 1.0f - (timeSinceCreation / PLANT_CREATION_FLASH_DURATION);
-            color = glm::mix(color, glm::vec3(1.0f, 1.0f, 1.0f), flashIntensity * 0.7f);
+
+        // Get mesh from ParticleAtomSystem
+        ParticleAtom::AtomMesh* mesh = particleSystem->getMesh(plant.atomMeshId);
+        if (!mesh || mesh->atoms.empty() || mesh->triangles.empty()) {
+            continue;  // Invalid mesh
         }
-        
-        vertices.push_back(plant.position.x);
-        vertices.push_back(plant.position.y);
-        vertices.push_back(plant.position.z);
-        
-        vertices.push_back(color.r);
-        vertices.push_back(color.g);
-        vertices.push_back(color.b);
-        
-        float pointSize;
-        if (plant.type == GRASS) {
-            pointSize = plantSizeGrass;
-        } else if (plant.type == BUSH) {
-            pointSize = plantSizeBush;
-        } else {
-            pointSize = plantSizeTree;
+
+        // Add vertices from this mesh's atoms
+        for (const auto& atom : mesh->atoms) {
+            // Position (3 floats)
+            allVertices.push_back(atom.position.x);
+            allVertices.push_back(atom.position.y);
+            allVertices.push_back(atom.position.z);
+
+            // Normal (3 floats) - compute average from connected triangles or default
+            glm::vec3 normal(0.0f, 1.0f, 0.0f);  // Default pointing up
+            allVertices.push_back(normal.x);
+            allVertices.push_back(normal.y);
+            allVertices.push_back(normal.z);
+
+            // Color (4 floats) - from atom
+            allVertices.push_back(atom.color.r);
+            allVertices.push_back(atom.color.g);
+            allVertices.push_back(atom.color.b);
+            allVertices.push_back(atom.color.a);
         }
-        vertices.push_back(pointSize);
+
+        // Add indices from this mesh's triangles
+        for (const auto& triangle : mesh->triangles) {
+            for (int i = 0; i < 3; ++i) {
+                allIndices.push_back(triangle.atomIds[i] + vertexOffset);
+            }
+        }
+
+        vertexOffset += mesh->atoms.size();
+        meshesRendered++;
+        totalAtomsRendered += mesh->atoms.size();
     }
-    
-    if (VAO == 0) {
-        glGenVertexArrays(1, &VAO);
-        glGenBuffers(1, &VBO);
+
+    // If no meshes to render, skip
+    if (allVertices.empty() || allIndices.empty()) {
+        return;
     }
-    
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_DYNAMIC_DRAW);
-    
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)0);
+
+    // Use geometry shader program for triangle rendering
+    glUseProgram(geometryShaderProgram);
+
+    // Set matrices
+    glm::mat4 view = cameraSystem->getViewMatrix();
+    glm::mat4 projection = glm::perspective(
+        glm::radians(45.0f),
+        (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT,
+        0.1f, 100.0f
+    );
+
+    int viewLoc = glGetUniformLocation(geometryShaderProgram, "uView");
+    int projLoc = glGetUniformLocation(geometryShaderProgram, "uProjection");
+    int modelLoc = glGetUniformLocation(geometryShaderProgram, "uModel");
+
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+    glm::mat4 model = glm::mat4(1.0f);
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+    // Set up VAO/VBO/EBO for geometry
+    if (geometryVAO == 0) {
+        glGenVertexArrays(1, &geometryVAO);
+        glGenBuffers(1, &geometryVBO);
+        glGenBuffers(1, &geometryEBO);
+    }
+
+    glBindVertexArray(geometryVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, geometryVBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, geometryEBO);
+
+    // Load vertex data
+    glBufferData(GL_ARRAY_BUFFER, allVertices.size() * sizeof(float), allVertices.data(), GL_DYNAMIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, allIndices.size() * sizeof(unsigned int), allIndices.data(), GL_DYNAMIC_DRAW);
+
+    // Configure vertex attributes (10 floats per vertex: pos3 + normal3 + color4)
+    const GLsizei stride = 10 * sizeof(float);
+
+    // Position
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (void*)0);
     glEnableVertexAttribArray(0);
-    
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(3 * sizeof(float)));
+
+    // Normal
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-    
-    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(6 * sizeof(float)));
+
+    // Color
+    glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, stride, (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
-    
-    glEnable(GL_PROGRAM_POINT_SIZE);
-    glPointSize(5.0f);
-    glDrawArrays(GL_POINTS, 0, plants.size());
-    glDisable(GL_PROGRAM_POINT_SIZE);
+
+    // Render triangles
+    glDrawElements(GL_TRIANGLES, allIndices.size(), GL_UNSIGNED_INT, 0);
+
+    // Debug output (only print when changed)
+    static int lastMeshCount = -1;
+    if (meshesRendered != lastMeshCount) {
+        std::cout << "🌿 Rendering " << meshesRendered << " modular plants (" 
+                  << totalAtomsRendered << " atoms, " << allIndices.size() << " triangles)" << std::endl;
+        lastMeshCount = meshesRendered;
+    }
 }
 
 // ============================================================================
