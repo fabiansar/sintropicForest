@@ -356,12 +356,16 @@ void GraphicsEngine::handleInput() {
 
     // Controles solo en estado PLAYING
     if (stateManager->isInState(PLAYING)) {
-        // Rotación de cámara con Q y E
-        if (inputState.keyQ) {
-            cameraSystem->rotate(CAMERA_ROTATION_SPEED * 0.016f);
-        }
-        if (inputState.keyE) {
-            cameraSystem->rotate(-CAMERA_ROTATION_SPEED * 0.016f);
+        // ✅ Rotación de cámara con botón derecho del ratón (drag)
+        if (inputState.mouseRightPressed && (inputState.mouseDeltaX != 0.0 || inputState.mouseDeltaY != 0.0)) {
+            float rotationSpeed = 0.5f;  // Rotación horizontal
+            float zoomSpeed = 0.01f;     // Zoom vertical
+            
+            // Mouse X → rotación horizontal
+            cameraSystem->rotate(inputState.mouseDeltaX * rotationSpeed);
+            
+            // Mouse Y → ajustar distancia (zoom con drag)
+            cameraSystem->adjustDistance(-inputState.mouseDeltaY * zoomSpeed);
         }
 
         // Movimiento de cámara con FLECHAS (lento, sin rotación)
@@ -396,7 +400,8 @@ void GraphicsEngine::handleInput() {
 
         if (glm::length(moveInput) > 0.0f) {
             float moveSpeed = CAMERA_MOVEMENT_SPEED * 0.016f;
-            cameraSystem->panTargetRotated(moveInput.y * moveSpeed, moveInput.x * moveSpeed);
+            // ✅ FIX: Invertir moveInput.x para corregir dirección A/D
+            cameraSystem->panTargetRotated(moveInput.y * moveSpeed, -moveInput.x * moveSpeed);
         }
 
         // LEFT CLICK - Agregar planta

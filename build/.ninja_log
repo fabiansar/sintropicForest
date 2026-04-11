@@ -1,6 +1,6 @@
 # ninja log v7
-10	882	7976459596557858	CMakeFiles/3DEngine.dir/src/EcosystemSimulator.cpp.obj	281944e919a1c8b9
-13	1029	7976459596586512	CMakeFiles/3DEngine.dir/src/ParticleAtomSystem.cpp.obj	b7c980c27ec65236
-3	1099	7976459596486168	CMakeFiles/3DEngine.dir/src/main_new.cpp.obj	6f1047442e1a6425
-7	1264	7976459596525882	CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj	eb9008f095ff8972
-1264	1754	7976459609096123	3DEngine.exe	781dc60ec28ea1b
+10	795	7976462916238382	CMakeFiles/3DEngine.dir/src/EcosystemSimulator.cpp.obj	281944e919a1c8b9
+13	949	7976462916256165	CMakeFiles/3DEngine.dir/src/ParticleAtomSystem.cpp.obj	b7c980c27ec65236
+3	1044	7976462916134283	CMakeFiles/3DEngine.dir/src/main_new.cpp.obj	6f1047442e1a6425
+7	1211	7976462916212260	CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj	eb9008f095ff8972
+1211	1706	7976462928242384	3DEngine.exe	781dc60ec28ea1b
