@@ -63,6 +63,10 @@ private:
 
 public:
     InputManager(GLFWwindow* win) : window(win) {
+        // ✅ FIX BUG-1: Inicializar posición del ratón para evitar delta gigante en frame 0
+        glfwGetCursorPos(win, &currentState.mouseX, &currentState.mouseY);
+        previousState = currentState;
+        
         // Registrar callback de scroll wheel
         glfwSetWindowUserPointer(win, this);
         glfwSetScrollCallback(win, scrollCallback);

@@ -839,6 +839,13 @@ void GraphicsEngine::cleanup() {
     glDeleteBuffers(1, &terrainEBO);
     glDeleteProgram(terrainShaderProgram);
     
+    // ✅ FIX BUG-2: Limpiar módulos (unique_ptr se destruye automáticamente)
+    inputManager.reset();
+    cameraSystem.reset();
+    gameLogic.reset();
+    stateManager.reset();
+    audioManager.reset();
+    
     // Limpiar Perlin Noise
     if (perlinNoise) delete perlinNoise;
 

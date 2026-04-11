@@ -54,9 +54,9 @@ public:
      */
     void rotate(float dRotation) {
         rotation += dRotation;
-        // Mantener en rango 0-360
-        while (rotation < 0.0f) rotation += 360.0f;
-        while (rotation >= 360.0f) rotation -= 360.0f;
+        // ✅ FIX BUG-6: usar glm::mod() en lugar de while loops
+        rotation = glm::mod(rotation, 360.0f);
+        if (rotation < 0.0f) rotation += 360.0f;
     }
 
     /**
@@ -95,6 +95,10 @@ public:
      */
     void adjustDistance(float dDistance) {
         distance = glm::clamp(distance + dDistance, minDistance, maxDistance);
+        // ✅ FIX BUG-5: mantener height proporcional a distance
+        float ratio = 15.0f / 35.0f;  // Ratio original: height/distance
+        height = distance * ratio;
+        height = glm::clamp(height, minHeight, maxHeight);
     }
 
     /**
