@@ -178,15 +178,17 @@ const float TERRAIN_NOISE_PERSISTENCE = 0.5f;  ///< Persistencia del ruido (0-1)
  * Flujo típico:
  *   SPLASH (3 seg) → MENU → PLAYING (jugando) ↔ MENU
  *                       ↘ SETTINGS (slider volumen)
+ *                       ↘ PLAYLIST (reproducir canciones)
  *                       ↘ CREDITS (créditos)
  * 
  * Cada estado tiene su RENDER función específica.
  */
 enum GameState {
     SPLASH,       ///< Pantalla inicial "Made by Fabian" (dura 3 segundos)
-    MENU,         ///< Menú principal con 3 botones (Play, Settings, Credits)
+    MENU,         ///< Menú principal con botones (Play, Playlist, Settings, Credits)
     PLAYING,      ///< Escena 3D con plantas, terreno, lógica
-    SETTINGS,     ///< Configuración (volumen, etc.)
+    PLAYLIST,     ///< Reproductor de música clásica (nueva opción)
+    SETTINGS,     ///< Configuración (volumen, opciones de plantas, etc.)
     CREDITS       ///< Pantalla de créditos
 };
 

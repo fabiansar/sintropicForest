@@ -10,6 +10,7 @@
 #include "StateManager.h"
 #include "AudioManager.h"
 #include "ParticleAtomSystem.h"
+#include "PlaylistManager.h"
 
 // Forward declaration para evitar incluir GLFW aquí
 struct GLFWwindow;
@@ -34,6 +35,7 @@ private:
     std::unique_ptr<StateManager> stateManager;
     std::unique_ptr<AudioManager> audioManager;
     std::unique_ptr<ParticleAtom::ParticleAtomSystem> particleSystem;  // NEW: Modular plant system
+    std::unique_ptr<PlaylistManager> playlistManager;  // NEW: Música clásica
     
     // VARIABLES GRÁFICAS
     GLFWwindow* window;
@@ -78,6 +80,7 @@ private:
     void renderSplashScreen();
     void renderMenu();
     void renderGameScene();
+    void renderPlaylist();       // NEW: Menu de reproducción de música
     void renderSettings();
     void renderCredits();
     

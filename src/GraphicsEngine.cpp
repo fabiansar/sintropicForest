@@ -199,6 +199,7 @@ bool GraphicsEngine::initialize() {
     stateManager = std::make_unique<StateManager>();
     audioManager = std::make_unique<AudioManager>();
     particleSystem = std::make_unique<ParticleAtom::ParticleAtomSystem>();
+    playlistManager = std::make_unique<PlaylistManager>();
 
     if (!particleSystem) {
         std::cerr << "Failed to initialize ParticleAtomSystem" << std::endl;
@@ -583,6 +584,8 @@ void GraphicsEngine::render() {
         renderMenu();
     } else if (state == PLAYING) {
         renderGameScene();
+    } else if (state == PLAYLIST) {
+        renderPlaylist();
     } else if (state == SETTINGS) {
         renderSettings();
     } else if (state == CREDITS) {
@@ -652,6 +655,17 @@ void GraphicsEngine::renderMenu() {
     if (ImGui::Button("Settings", ImVec2(250, 50))) {
         if (stateManager) {
             stateManager->requestTransition(SETTINGS);
+        }
+    }
+
+    ImGui::Spacing();
+
+    if (ImGui::Button("Playlist", ImVec2(250, 50))) {
+        if (stateManager) {
+            stateManager->requestTransition(PLAYLIST);
+            if (playlistManager) {
+                playlistManager->printPlaylist();
+            }
         }
     }
 
@@ -773,9 +787,9 @@ void GraphicsEngine::renderSettings() {
 
     ImVec2 center = ImGui::GetMainViewport()->GetCenter();
     ImGui::SetNextWindowPos(center, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-    ImGui::SetNextWindowSize(ImVec2(400, 450), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(ImVec2(550, 700), ImGuiCond_Always);
 
-    ImGui::Begin("Configuración", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+    ImGui::Begin("⚙️ Configuración", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 
     ImGui::SliderFloat("Master Volume", &masterVolume, 0.0f, 1.0f);
     if (audioManager) {
@@ -783,34 +797,67 @@ void GraphicsEngine::renderSettings() {
     }
     
     ImGui::Separator();
-    ImGui::Text("Configuracion de Plantas:");
+    ImGui::Text("🎵 Opciones de Música:");
+    ImGui::Separator();
+    
+    if (ImGui::Button("Abrir Playlist", ImVec2(-1, 35))) {
+        stateManager->requestTransition(PLAYLIST);
+    }
+    
+    ImGui::Spacing();
+    if (playlistManager) {
+        bool shuffle = playlistManager->getShuffleMode();
+        if (ImGui::Checkbox("Modo Shuffle", &shuffle)) {
+            playlistManager->setShuffleMode(shuffle);
+        }
+        
+        bool repeat = playlistManager->getRepeatMode();
+        if (ImGui::Checkbox("Repetir Música", &repeat)) {
+            playlistManager->setRepeatMode(repeat);
+        }
+    }
+    
+    ImGui::Separator();
+    ImGui::Text("🌱 Configuración de Plantas:");
     ImGui::Separator();
     
     // Probabilidades
     float treeProb = gameLogic->getTreeProbability();
     float bushProb = gameLogic->getBushProbability();
     
-    ImGui::SliderFloat("Probabilidad Arboles (%%)", &treeProb, 0.0f, 0.5f, "%.2f");
+    ImGui::SliderFloat("Probabilidad Árboles (%%)", &treeProb, 0.0f, 0.5f, "%.2f");
     gameLogic->setTreeProbability(treeProb);
     
     ImGui::SliderFloat("Probabilidad Arbustos (%%)", &bushProb, 0.0f, 0.5f, "%.2f");
     gameLogic->setBushProbability(bushProb);
     
-    ImGui::Text("Probabilidad Hierba: %.2f", gameLogic->getGrassProbability());
+    ImGui::Text("Probabilidad Hierba: %.2f%%", gameLogic->getGrassProbability() * 100.0f);
     
-    ImGui::Separator();
-    ImGui::Text("Tamanios de Punto:");
+    ImGui::Spacing();
+    ImGui::Text("📏 Tamaños de Plantas:");
     ImGui::Separator();
     
     // Tamaños
     ImGui::SliderFloat("Hierba (px)", &plantSizeGrass, 1.0f, 15.0f);
     ImGui::SliderFloat("Arbusto (px)", &plantSizeBush, 1.0f, 15.0f);
-    ImGui::SliderFloat("Arbol (px)", &plantSizeTree, 1.0f, 20.0f);
+    ImGui::SliderFloat("Árbol (px)", &plantSizeTree, 1.0f, 20.0f);
     
     ImGui::Spacing();
+    ImGui::Text("🌿 Parámetros Procedurales:");
+    ImGui::Separator();
+    
+    static float plantScaleFactor = 1.0f;
+    static float leafDensity = 0.9f;
+    static int branchLevels = 3;
+    
+    ImGui::SliderFloat("Escala Global", &plantScaleFactor, 0.5f, 2.0f, "%.2f");
+    ImGui::SliderFloat("Densidad de Hojas", &leafDensity, 0.0f, 1.0f, "%.2f");
+    ImGui::SliderInt("Niveles de Ramificación", &branchLevels, 1, 5);
+    
+    ImGui::Separator();
     ImGui::Spacing();
 
-    if (ImGui::Button("Atras", ImVec2(350, 50))) {
+    if (ImGui::Button("Volver al Menú", ImVec2(-1, 40))) {
         stateManager->requestTransition(MENU);
     }
 
@@ -1117,4 +1164,121 @@ void GraphicsEngine::playClassicalMusic(int musicType) {
     }
     
     std::cout << "🎼 Piece complete - Gracias por escuchar!" << std::endl;
+}
+
+// ============================================================================
+// 🎵 PLAYLIST MENU RENDERING
+// ============================================================================
+
+void GraphicsEngine::renderPlaylist() {
+    if (!stateManager || !playlistManager) {
+        return;
+    }
+
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+    ImGui::SetNextWindowPos(center, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+    ImGui::SetNextWindowSize(ImVec2(500, 600), ImGuiCond_Always);
+
+    ImGui::Begin("📻 Playlist", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+
+    ImGui::Text("Classical Music Collection");
+    ImGui::Text("All compositions are in PUBLIC DOMAIN ✅");
+    ImGui::Separator();
+
+    // Mostrar lista de canciones
+    int totalSongs = playlistManager->getTotalSongs();
+    int currentIndex = playlistManager->getCurrentSongIndex();
+    
+    ImGui::Text("Total Songs: %d", totalSongs);
+    ImGui::Separator();
+
+    for (int i = 0; i < totalSongs; ++i) {
+        const auto& song = playlistManager->getSong(i);
+        
+        // Botón para seleccionar canción
+        bool isSelected = (i == currentIndex);
+        if (isSelected) {
+            ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.2f, 0.6f, 0.2f, 0.8f));
+        }
+        
+        std::string label = std::string(song.emoji) + " " + std::to_string(i + 1) + ". " + song.name;
+        if (ImGui::Button(label.c_str(), ImVec2(-1, 30))) {
+            playlistManager->setSongIndex(i);
+        }
+        
+        if (isSelected) {
+            ImGui::PopStyleColor();
+        }
+        
+        // Mostrar compositor
+        ImGui::Indent();
+        ImGui::TextDisabled("%s", song.composer);
+        ImGui::Unindent();
+    }
+
+    ImGui::Separator();
+    ImGui::Spacing();
+
+    // Controles de reproducción
+    ImGui::Text("Playback Controls:");
+    
+    float buttonWidth = (ImGui::GetContentRegionAvail().x - ImGui::GetStyle().ItemSpacing.x * 2) / 3;
+    
+    if (ImGui::Button("Play", ImVec2(buttonWidth, 40))) {
+        playlistManager->play();
+        const auto& song = playlistManager->getCurrentSong();
+        playClassicalMusic(song.musicType);
+    }
+    
+    ImGui::SameLine();
+    if (ImGui::Button("Previous", ImVec2(buttonWidth, 40))) {
+        playlistManager->playPrevious();
+        const auto& song = playlistManager->getCurrentSong();
+        playClassicalMusic(song.musicType);
+    }
+    
+    ImGui::SameLine();
+    if (ImGui::Button("Next", ImVec2(buttonWidth, 40))) {
+        playlistManager->playNext();
+        const auto& song = playlistManager->getCurrentSong();
+        playClassicalMusic(song.musicType);
+    }
+
+    ImGui::Spacing();
+    
+    // Shuffle and Repeat
+    bool shuffle = playlistManager->getShuffleMode();
+    if (ImGui::Checkbox("Shuffle Mode", &shuffle)) {
+        playlistManager->setShuffleMode(shuffle);
+    }
+    
+    ImGui::SameLine();
+    
+    bool repeat = playlistManager->getRepeatMode();
+    if (ImGui::Checkbox("Repeat Mode", &repeat)) {
+        playlistManager->setRepeatMode(repeat);
+    }
+
+    ImGui::Separator();
+    ImGui::Spacing();
+
+    // Información actual
+    const auto& currentSong = playlistManager->getCurrentSong();
+    ImGui::TextColored(ImVec4(0.2f, 0.8f, 0.2f, 1.0f), "Now: %s", currentSong.name);
+    ImGui::TextDisabled("%s", currentSong.composer);
+
+    ImGui::Spacing();
+    ImGui::Separator();
+
+    if (ImGui::Button("Back to Menu", ImVec2(-1, 40))) {
+        stateManager->requestTransition(MENU);
+    }
+
+    ImGui::End();
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
