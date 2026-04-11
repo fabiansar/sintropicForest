@@ -176,6 +176,7 @@ private:
     
     // VARIABLES DE CONFIGURACIÓN
     float masterVolume;       // Volumen maestro (0.0 - 1.0)
+    float cameraRotationSpeed = 0.5f;  // Velocidad de rotación del ratón (degrees per pixel)
 
 public:
     /**
@@ -345,6 +346,47 @@ public:
     }
 
     /**
+     * GENERAR BOSQUE PROCEDURAL ALEATORIO
+     * 
+     * Crea un patrón concentrado de luces que simula árboles
+     * usando distribución de Poisson para evitar solapamiento
+     */
+    void generateRandomForest() {
+        lights.clear();  // Limpiar luces anteriores
+        
+        // Crear generador de números aleatorios
+        std::mt19937 gen(std::random_device{}());
+        std::uniform_real_distribution<float> dist_x(-15.0f, 15.0f);    // Posición X (más concentrado)
+        std::uniform_real_distribution<float> dist_y(-8.0f, 12.0f);     // Posición Y (alturas variadas)
+        std::uniform_real_distribution<float> dist_z(-35.0f, -10.0f);   // Posición Z (más cercano)
+        std::uniform_real_distribution<float> dist_vel(-0.02f, 0.02f);  // Velocidad lenta
+        std::uniform_real_distribution<float> dist_green(0.5f, 1.0f);   // Verde
+        std::uniform_real_distribution<float> dist_brown(0.3f, 0.6f);   // Marrón (tronco)
+
+        // Generar 120 árboles en patrón procedural (bosque denso)
+        for (int i = 0; i < 120; ++i) {
+            Light light;
+            // Posición con clusters (simula arboledas)
+            float clusterX = dist_x(gen);
+            float clusterZ = dist_z(gen);
+            light.position = glm::vec3(clusterX, dist_y(gen), clusterZ);
+            
+            // Colores: principalmente verde (follaje) con algo de marrón (troncos)
+            if (i % 3 == 0) {
+                // Tronco (marrón)
+                light.color = glm::vec3(dist_brown(gen), dist_brown(gen) * 0.5f, 0.2f);
+            } else {
+                // Follaje (verde)
+                light.color = glm::vec3(dist_brown(gen) * 0.3f, dist_green(gen), dist_brown(gen) * 0.3f);
+            }
+            
+            // Movimiento muy lento
+            light.velocity = glm::vec3(dist_vel(gen), 0.0f, dist_vel(gen) * 0.05f);
+            lights.push_back(light);
+        }
+    }
+
+    /**
      * PROCESAR ENTRADA DEL USUARIO
      * 
      * Actualmente solo maneja la tecla ESC:
@@ -374,9 +416,13 @@ public:
      * @param deltaTime - Tiempo transcurrido desde el último fotograma
     */
     void update(float deltaTime) {
+        // ACTUALIZAR INPUTS PRIMERO (independiente de estado)
+        if (inputManager) {
+            inputManager->update();
+        }
+
         // PROCESAR INPUTS (solo en estado PLAYING)
         if (currentState == PLAYING && inputManager) {
-            inputManager->update();
             const auto& input = inputManager->getInputState();
             
             // MOVIMIENTO ROTADO DE CÁMARA
@@ -394,8 +440,7 @@ public:
             
             // ROTACIÓN DE CÁMARA CON RATÓN (botón derecho + movimiento horizontal)
             if (input.mouseRightPressed) {
-                float rotationSpeed = 0.1f;  // Grados por píxel de movimiento del ratón
-                camera.rotate((float)input.mouseDeltaX * rotationSpeed);
+                camera.rotate((float)input.mouseDeltaX * cameraRotationSpeed);
             }
             
             // ZOOM
@@ -623,7 +668,17 @@ public:
         ImGui::Text("W/A/S/D: Move Camera");
         ImGui::Text("Right Mouse + Drag: Rotate Camera");
         ImGui::Text("UP/DOWN: Zoom");
-        ImGui::Text("Lights: %d", NUM_LIGHTS);
+        
+        ImGui::Spacing();
+        ImGui::Separator();
+        ImGui::Spacing();
+        
+        // Botón para generar bosque procedural
+        if (ImGui::Button("Generate Random Forest", ImVec2(250, 40))) {
+            generateRandomForest();
+        }
+        ImGui::TextColored(ImVec4(0.7f, 1.0f, 0.7f, 1.0f), "Objects: %zu", lights.size());
+        
         ImGui::End();
 
         ImGui::Render();
@@ -645,7 +700,7 @@ public:
         // Centrar ventana
         ImVec2 center = ImGui::GetMainViewport()->GetCenter();
         ImGui::SetNextWindowPos(center, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-        ImGui::SetNextWindowSize(ImVec2(350, 250), ImGuiCond_Always);
+        ImGui::SetNextWindowSize(ImVec2(400, 300), ImGuiCond_Always);
 
         ImGui::Begin("Settings", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 
@@ -654,10 +709,17 @@ public:
         ImGui::SliderFloat("Master Volume", &masterVolume, 0.0f, 1.0f);
         
         ImGui::Spacing();
+        
+        // Control deslizable de velocidad de rotación de cámara
+        // cameraRotationSpeed: 0.1 = lenta, 1.0 = muy rápida
+        ImGui::SliderFloat("Camera Rotation Speed", &cameraRotationSpeed, 0.1f, 2.0f);
+        ImGui::TextColored(ImVec4(0.7f, 0.7f, 0.7f, 1.0f), "Right-click drag to rotate");
+        
+        ImGui::Spacing();
         ImGui::Spacing();
 
         // Botón para volver al menú
-        if (ImGui::Button("Back", ImVec2(300, 50))) {
+        if (ImGui::Button("Back", ImVec2(350, 50))) {
             nextState = MENU;
         }
 
