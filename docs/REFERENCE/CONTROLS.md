@@ -78,9 +78,9 @@ Los movimientos **rotan según el ángulo de rotación actual** (Q/E):
 
 Ángulo: 90° (rotado 90° con E)
 ┌─────────┐
-│  D      │
-│ S   W   │  Controles ajustados a rotación
 │  A      │
+│ S   W   │  Controles ajustados a rotación
+│  D      │
 └─────────┘
   Adelante
   Izq Dcha
