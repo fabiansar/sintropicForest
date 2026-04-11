@@ -275,13 +275,14 @@ void GraphicsEngine::generateTerrain() {
 // ============================================================================
 
 glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
-    if (!cameraSystem) {
-        return glm::vec3(0.0f);
+    if (!cameraSystem || !perlinNoise) {
+        // Fallback: devolver posición en el centro del terreno
+        return glm::vec3(0.0f, 0.0f, 0.0f);
     }
 
     // Normalizar coordenadas del mouse a -1 a 1
-    float nx = (2.0f * mouseX) / WINDOW_WIDTH - 1.0f;
-    float ny = 1.0f - (2.0f * mouseY) / WINDOW_HEIGHT;
+    float nx = (2.0f * (float)mouseX) / WINDOW_WIDTH - 1.0f;
+    float ny = 1.0f - (2.0f * (float)mouseY) / WINDOW_HEIGHT;
 
     // Crear matrices usando CameraSystem
     glm::mat4 projection = CameraSystem::getProjectionMatrix(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -303,14 +304,29 @@ glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
     glm::vec3 rayWorld = glm::vec3(invView * rayEye);
     rayWorld = glm::normalize(rayWorld);
 
+    // Prevent division by zero
+    if (glm::abs(rayWorld.y) < 0.0001f) {
+        return glm::vec3(camPos.x, 0.0f, camPos.z);  // Fallback
+    }
+
     // Raycast al plano Y=0
     float t = -camPos.y / rayWorld.y;
+    
+    // Prevent negative t
+    if (t < 0.0f) {
+        return glm::vec3(camPos.x, 0.0f, camPos.z);  // Fallback
+    }
+    
     glm::vec3 hitPos = camPos + rayWorld * t;
 
     // Clampear a límites del terreno
     hitPos.x = glm::clamp(hitPos.x, -TERRAIN_SIZE/2.0f, TERRAIN_SIZE/2.0f);
     hitPos.z = glm::clamp(hitPos.z, -TERRAIN_SIZE/2.0f, TERRAIN_SIZE/2.0f);
-    hitPos.y = 2.0f;  // Altura de las luces
+    
+    // ✅ FIX: Calcular altura desde terreno usando Perlin Noise
+    float noiseValue = perlinNoise->sample(hitPos.x, hitPos.z, 
+        TERRAIN_NOISE_SCALE, TERRAIN_NOISE_PERSISTENCE, TERRAIN_NOISE_OCTAVES);
+    hitPos.y = (noiseValue - 0.5f) * TERRAIN_NOISE_HEIGHT;  // Altura real del terreno
 
     return hitPos;
 }
@@ -407,10 +423,9 @@ void GraphicsEngine::handleInput() {
         // LEFT CLICK - Agregar planta
         if (inputState.mouseLeftClick) {
             glm::vec3 hitPos = getRaycastHit(inputState.mouseX, inputState.mouseY);
-            if (gameLogic->getPlantCount() < (size_t)MAX_LIGHTS) {
-                addPlant(hitPos);
-                audioManager->playSound(AudioManager::SOUND_PLACE_PLANT);
-            }
+            // ✅ FIX: Permitir plantas sin límite de MAX_LIGHTS
+            addPlant(hitPos);
+            audioManager->playSound(AudioManager::SOUND_PLACE_PLANT);
         }
 
         // RIGHT CLICK - Eliminar planta más cercana

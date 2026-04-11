@@ -181,7 +181,22 @@ void EcosystemSimulator::updateEnvironmentalStress(PlantData& plant) {
     
     // Calcular luz disponible (simplificado: luz global - sombra de vecinas)
     plant.localLight = globalLight;
-    for (const auto& other : plants) {
+    
+    // ✅ OPTIMIZADO: Usar spatial grid para buscar sombreadoras
+    // Encontrar indice de esta planta (simple búsqueda)
+    size_t plantIdx = 0;
+    for (size_t i = 0; i < plants.size(); ++i) {
+        if (&plants[i] == &plant) {
+            plantIdx = i;
+            break;
+        }
+    }
+    
+    auto nearbyIndices = getNearbyCells(plantIdx, species.maxRadius + 1.0f);
+    for (size_t otherIdx : nearbyIndices) {
+        if (otherIdx == plantIdx) continue;
+        const auto& other = plants[otherIdx];
+        
         if (other.type == plant.type) continue;
         
         float dist = glm::distance(glm::vec2(plant.position.x, plant.position.z),
@@ -244,7 +259,21 @@ void EcosystemSimulator::checkSuccession(PlantData& plant) {
         
         // Si hay sombra de árboles, convertir a arbusto
         bool nearTree = false;
-        for (const auto& other : plants) {
+        
+        // ✅ OPTIMIZADO: Usar spatial grid para buscar árboles cercanos
+        size_t plantIdx = 0;
+        for (size_t i = 0; i < plants.size(); ++i) {
+            if (&plants[i] == &plant) {
+                plantIdx = i;
+                break;
+            }
+        }
+        
+        auto nearbyIndices = getNearbyCells(plantIdx, 8.0f);  // Buscar en radio 8m
+        for (size_t otherIdx : nearbyIndices) {
+            if (otherIdx == plantIdx) continue;
+            const auto& other = plants[otherIdx];
+            
             if (other.type == TREE) {
                 float dist = glm::distance(glm::vec2(plant.position.x, plant.position.z),
                                           glm::vec2(other.position.x, other.position.z));
