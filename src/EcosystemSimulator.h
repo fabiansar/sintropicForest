@@ -125,7 +125,18 @@ private:
     int maxPlants = 500;
     float updateInterval = 0.1f;   // Actualizar cada 0.1 segundos
     float accumulatedTime = 0.0f;
-
+    
+    // ✅ OPTIMIZACIÓN FASE 4: Spatial Grid para O(1) lookups
+    static constexpr float GRID_CELL_SIZE = 10.0f;  // 10m × 10m cells
+    struct GridCell {
+        int x, z;
+        bool operator<(const GridCell& other) const {
+            return (x < other.x) || (x == other.x && z < other.z);
+        }
+    };
+    std::map<GridCell, std::vector<size_t>> spatialGrid;  // cell → plant indices
+    bool gridNeedsRebuild = true;
+    
     // Métodos privados
     void initializeSpeciesData();
     void updatePlantLife(PlantData& plant, float deltaTime);
@@ -134,6 +145,8 @@ private:
     void disperseSeeds(PlantData& plant, float deltaTime);
     void resolveCompetition();
     void updateInteractions();
+    void rebuildSpatialGrid();  // ✅ Reconstruir grid
+    std::vector<size_t> getNearbyCells(size_t plantIndex, float radius) const;  // ✅ Query vecinas
     glm::vec3 findRandomGrowthSpot(const PlantData& parent) const;
 
 public:

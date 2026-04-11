@@ -92,6 +92,9 @@ void EcosystemSimulator::update(float deltaTime) {
     float dt = accumulatedTime;
     accumulatedTime = 0.0f;
     
+    // ✅ FASE 4: Reconstruir spatial grid para optimizaciones
+    rebuildSpatialGrid();
+    
     // 1. Actualizar vida de cada planta
     for (auto& plant : plants) {
         updatePlantLife(plant, dt);
@@ -324,13 +327,23 @@ void EcosystemSimulator::disperseSeeds(PlantData& plant, float deltaTime) {
 // ============================================================================
 
 void EcosystemSimulator::resolveCompetition() {
-    // Contar competidores cercanos para cada planta
-    for (auto& plant : plants) {
+    // ✅ FASE 4 OPTIMIZADO: Usar spatial grid en lugar de O(n²)
+    // Antes: 500 plantas × 500 = 250,000 distancias/frame
+    // Después: 500 plantas × ~9 vecinas = 4,500 distancias/frame (~55x speedup)
+    
+    for (size_t i = 0; i < plants.size(); ++i) {
+        auto& plant = plants[i];
         plant.competitorsNearby = 0;
         const SpeciesData& species = speciesData[plant.type];
         
-        for (const auto& other : plants) {
-            if (other.type == plant.type) continue;
+        // Obtener solo plantas vecinas usando spatial grid
+        auto nearbyIndices = getNearbyCells(i, species.maxRadius + 1.0f);
+        
+        for (size_t otherIdx : nearbyIndices) {
+            if (otherIdx == i) continue;  // No contar a sí misma
+            const auto& other = plants[otherIdx];
+            
+            if (other.type == plant.type) continue;  // Solo competidores de tipo diferente
             
             float dist = glm::distance(glm::vec2(plant.position.x, plant.position.z),
                                       glm::vec2(other.position.x, other.position.z));
@@ -348,10 +361,20 @@ void EcosystemSimulator::resolveCompetition() {
 // ============================================================================
 
 void EcosystemSimulator::updateInteractions() {
-    // Simbiosis (árboles con leguminosas cercanas)
-    for (auto& plant : plants) {
+    // ✅ FASE 4 OPTIMIZADO: Usar spatial grid para buscar simbionts
+    
+    for (size_t i = 0; i < plants.size(); ++i) {
+        auto& plant = plants[i];
+        
+        // Simbiosis (árboles con leguminosas cercanas)
         if (plant.type == TREE) {
-            for (auto& other : plants) {
+            // Buscar solo en celdas cercanas
+            auto nearbyIndices = getNearbyCells(i, 5.0f);
+            
+            for (size_t otherIdx : nearbyIndices) {
+                if (otherIdx == i) continue;
+                auto& other = plants[otherIdx];
+                
                 if (other.type == BUSH) {
                     float dist = glm::distance(glm::vec2(plant.position.x, plant.position.z),
                                               glm::vec2(other.position.x, other.position.z));
@@ -404,6 +427,76 @@ const SpeciesData& EcosystemSimulator::getSpeciesData(PlantType type) const {
         return it->second;
     }
     return speciesData.at(GRASS);  // Default
+}
+
+// ============================================================================
+// OPTIMIZACIÓN FASE 4: SPATIAL GRID
+// ============================================================================
+
+void EcosystemSimulator::rebuildSpatialGrid() {
+    /**
+     * Reconstruir spatial grid particionando el terreno en celdas
+     * 
+     * Cada celda es una cuadrícula de GRID_CELL_SIZE × GRID_CELL_SIZE metros
+     * Las plantas se distribuyen en sus celdas correspondientes
+     * 
+     * Beneficio: búsquedas de vecinos en O(1) en lugar de O(n)
+     */
+    spatialGrid.clear();
+    
+    for (size_t i = 0; i < plants.size(); ++i) {
+        const auto& plant = plants[i];
+        
+        // Calcular coordenadas de celda
+        int cellX = (int)(plant.position.x / GRID_CELL_SIZE);
+        int cellZ = (int)(plant.position.z / GRID_CELL_SIZE);
+        
+        GridCell cell{cellX, cellZ};
+        spatialGrid[cell].push_back(i);
+    }
+}
+
+std::vector<size_t> EcosystemSimulator::getNearbyCells(size_t plantIndex, float radius) const {
+    /**
+     * Obtener índices de todas las plantas en celdas cercanas
+     * 
+     * Para una planta en posición (x, z) con radio r:
+     * 1. Calcular su celda actual
+     * 2. Iterar celdas vecinas en cuadrado de (r/GRID_CELL_SIZE)
+     * 3. Retornar todos los índices en esas celdas
+     * 
+     * Complejidad: O(k²) donde k = ceil(radius / GRID_CELL_SIZE)
+     * Para radius=5 y GRID_CELL_SIZE=10: k=1, máx 9 celdas
+     */
+    std::vector<size_t> nearby;
+    
+    if (plantIndex >= plants.size()) {
+        return nearby;
+    }
+    
+    const auto& plant = plants[plantIndex];
+    int cellX = (int)(plant.position.x / GRID_CELL_SIZE);
+    int cellZ = (int)(plant.position.z / GRID_CELL_SIZE);
+    
+    // Calcular rango de celdas a buscar
+    int cellRange = (int)std::ceil(radius / GRID_CELL_SIZE);
+    
+    // Iterar celdas cercanas (cuadrado de búsqueda)
+    for (int dx = -cellRange; dx <= cellRange; ++dx) {
+        for (int dz = -cellRange; dz <= cellRange; ++dz) {
+            GridCell neighborCell{cellX + dx, cellZ + dz};
+            
+            auto it = spatialGrid.find(neighborCell);
+            if (it != spatialGrid.end()) {
+                // Agregar todos los índices de esta celda
+                for (size_t idx : it->second) {
+                    nearby.push_back(idx);
+                }
+            }
+        }
+    }
+    
+    return nearby;
 }
 
 // ============================================================================
