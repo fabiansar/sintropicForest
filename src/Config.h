@@ -198,22 +198,44 @@ enum GameState {
  * ESTRUCTURA PLANT
  * 
  * Representa UNA PLANTA individual en el mundo 3D.
- * Renderizada como punto de luz simple con color verde-marrón.
+ * Renderizada como geometría modular con átomos (de ParticleAtomSystem).
  * 
  * Campos:
  * - position: Ubicación en el mundo (X, Y, Z)
  * - type: Tipo de planta (GRASS=pequeña, BUSH=media, TREE=grande)
  * - createdTime: Para animación de color al crear
- * - baseColor: Verde para GRASS, Marrón para TREE
+ * - atomMeshId: ID de la malla atómica en ParticleAtomSystem
  */
 struct Plant {
     glm::vec3 position;        ///< Posición en el mundo
     int type;                  ///< PlantType: GRASS=0, BUSH=1, TREE=2
     float createdTime;         ///< Tiempo de creación para animación
+    uint32_t atomMeshId = 0;   ///< Reference to ParticleAtomSystem mesh
+    
+    Plant() : position(0.0f), type(0), createdTime(0.0f), atomMeshId(0) {}
 };
 
 // ============================================================================
-// 6. INFORMACIÓN Y DOCUMENTACIÓN
+// 6. MODULAR PLANT GENERATION (ParticleAtomSystem)
+// ============================================================================
+
+// Atom complexity per plant type (balanced approach)
+const int GRASS_ATOM_COUNT = 12;        // Simple stem + leaves
+const int BUSH_ATOM_COUNT = 40;         // Branched structure
+const int TREE_ATOM_COUNT = 70;         // Complex multi-branch
+
+// Generation parameters
+const float PLANT_HEIGHT_GRASS = 2.0f;
+const float PLANT_HEIGHT_BUSH = 4.0f;
+const float PLANT_HEIGHT_TREE = 6.5f;
+
+// Destruction parameters
+const float ATOM_DAMAGE_PER_CLICK = 0.5f;     // Damage on right-click
+const float ATOM_HEALTH_THRESHOLD = 0.0f;    // Health below = broken
+const float DEGRADATION_TIME = 15.0f;        // Seconds to degrade to soil
+
+// ============================================================================
+// 7. INFORMACIÓN Y DOCUMENTACIÓN
 // ============================================================================
 
 /**

@@ -171,12 +171,40 @@ bool GraphicsEngine::initialize() {
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
+    // PASO 10B: Compile plant geometry shader (for atom triangles)
+    unsigned int geometryVertexShader = compileShader(plantGeometryVertexShader, GL_VERTEX_SHADER);
+    unsigned int geometryFragmentShader = compileShader(plantGeometryFragmentShader, GL_FRAGMENT_SHADER);
+    
+    geometryShaderProgram = glCreateProgram();
+    glAttachShader(geometryShaderProgram, geometryVertexShader);
+    glAttachShader(geometryShaderProgram, geometryFragmentShader);
+    glLinkProgram(geometryShaderProgram);
+    
+    glGetProgramiv(geometryShaderProgram, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(geometryShaderProgram, 512, nullptr, infoLog);
+        std::cerr << "Geometry shader link failed: " << infoLog << std::endl;
+    } else {
+        std::cout << "✓ Plant geometry shader compiled successfully" << std::endl;
+    }
+    
+    glDeleteShader(geometryVertexShader);
+    glDeleteShader(geometryFragmentShader);
+
     // PASO 11: Inicializar sistemas modulares
     inputManager = std::make_unique<InputManager>(window);
     cameraSystem = std::make_unique<CameraSystem>();
     gameLogic = std::make_unique<GameLogic>();
     stateManager = std::make_unique<StateManager>();
     audioManager = std::make_unique<AudioManager>();
+    particleSystem = std::make_unique<ParticleAtom::ParticleAtomSystem>();
+
+    if (!particleSystem) {
+        std::cerr << "Failed to initialize ParticleAtomSystem" << std::endl;
+        return false;
+    }
+
+    std::cout << "✓ ParticleAtomSystem initialized successfully" << std::endl;
 
     return true;
 }
@@ -336,8 +364,73 @@ glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
 // ============================================================================
 
 void GraphicsEngine::addPlant(const glm::vec3& position) {
-    if (gameLogic) {
-        gameLogic->addPlant(position);
+    if (!gameLogic || !particleSystem) {
+        return;
+    }
+    
+    // Add plant to game logic
+    if (!gameLogic->addPlant(position)) {
+        return;  // Failed (max plants reached)
+    }
+    
+    // Get the plant that was just added
+    const auto& plants = gameLogic->getPlants();
+    if (plants.empty()) {
+        return;
+    }
+    
+    Plant& newPlant = const_cast<Plant&>(plants.back());  // Last added
+    
+    // Create mesh ID
+    uint32_t meshId = particleSystem->createMesh(
+        "Plant_" + std::to_string(plants.size()),
+        static_cast<PlantType>(newPlant.type)
+    );
+    
+    // Generate atom structure based on plant type
+    std::unique_ptr<ParticleAtom::AtomMesh> mesh;
+    
+    switch (newPlant.type) {
+        case GRASS:
+            mesh = ParticleAtom::AtomGenerator::generateHerbaceousPlant(
+                meshId, position, PLANT_HEIGHT_GRASS,
+                4, 3);  // 4 stem segments, 3 leaves per
+            break;
+            
+        case BUSH:
+            mesh = ParticleAtom::AtomGenerator::generateBush(
+                meshId, position, PLANT_HEIGHT_BUSH,
+                3, 2);  // 3 primary branches, 2 secondary
+            break;
+            
+        case TREE:
+            mesh = ParticleAtom::AtomGenerator::generateTree(
+                meshId, position, PLANT_HEIGHT_TREE, 2);
+            break;
+            
+        default:
+            particleSystem->removeMesh(meshId);
+            return;
+    }
+    
+    if (mesh) {
+        newPlant.atomMeshId = meshId;
+        
+        // Store mesh in system by replacing the created empty one
+        // Get reference to the mesh we just created in particle system
+        ParticleAtom::AtomMesh* storedMesh = particleSystem->getMesh(meshId);
+        if (storedMesh) {
+            // Copy atomization data into stored mesh
+            storedMesh->atoms = mesh->atoms;
+            storedMesh->triangles = mesh->triangles;
+            storedMesh->structureType = mesh->structureType;
+            storedMesh->integrityScore = mesh->integrityScore;
+            
+            std::cout << "✓ Created plant mesh #" << meshId << " with " 
+                      << storedMesh->getAtomCount() << " atoms (type " << newPlant.type << ")" << std::endl;
+        }
+    } else {
+        particleSystem->removeMesh(meshId);
     }
 }
 
@@ -752,27 +845,26 @@ void GraphicsEngine::renderCredits() {
 // ============================================================================
 
 void GraphicsEngine::generatePlantGeometry() {
-    // Ya no se usa - Las plantas se renderizan como puntos simples
+    // Now handled by ParticleAtomSystem in addPlant()
 }
 
 void GraphicsEngine::renderPlants() {
-    if (!gameLogic) {
+    if (!gameLogic || !particleSystem) {
         return;
     }
 
+    // Fallback rendering: render as GL_POINTS
+    // (Triangle rendering infrastructure prepared but not yet rendering meshes)
     glUseProgram(shaderProgram);
     
-    // Preparar datos de vértices para todos los puntos
     std::vector<float> vertices;
     const auto& plants = gameLogic->getPlants();
     float gameTime = gameLogic->getElapsedTime();
     
     for (const auto& plant : plants) {
-        // Calcular color con animación flash al crear
         glm::vec3 color;
         float timeSinceCreation = gameTime - plant.createdTime;
         
-        // Determinar color base según tipo
         if (plant.type == GRASS) {
             color = PLANT_COLOR_GRASS;
         } else if (plant.type == BUSH) {
@@ -781,23 +873,19 @@ void GraphicsEngine::renderPlants() {
             color = PLANT_COLOR_TREE;
         }
         
-        // Flash blanco al create (primeros 0.5 segundos)
         if (timeSinceCreation < PLANT_CREATION_FLASH_DURATION) {
             float flashIntensity = 1.0f - (timeSinceCreation / PLANT_CREATION_FLASH_DURATION);
             color = glm::mix(color, glm::vec3(1.0f, 1.0f, 1.0f), flashIntensity * 0.7f);
         }
         
-        // Posición
         vertices.push_back(plant.position.x);
         vertices.push_back(plant.position.y);
         vertices.push_back(plant.position.z);
         
-        // Color
         vertices.push_back(color.r);
         vertices.push_back(color.g);
         vertices.push_back(color.b);
         
-        // Tamaño del punto (codificado en el vértice) - CONFIGURABLE
         float pointSize;
         if (plant.type == GRASS) {
             pointSize = plantSizeGrass;
@@ -809,7 +897,6 @@ void GraphicsEngine::renderPlants() {
         vertices.push_back(pointSize);
     }
     
-    // Inicializar VAO/VBO si no existen
     if (VAO == 0) {
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
@@ -818,25 +905,19 @@ void GraphicsEngine::renderPlants() {
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     
-    // Cargar datos
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_DYNAMIC_DRAW);
     
-    // Configurar atributos
-    // Posición (3 floats)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     
-    // Color (3 floats)
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
     
-    // Tamaño (1 float)
     glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
     
-    // Renderizar puntos
     glEnable(GL_PROGRAM_POINT_SIZE);
-    glPointSize(5.0f);  // Tamaño base (se modifica en vertex shader)
+    glPointSize(5.0f);
     glDrawArrays(GL_POINTS, 0, plants.size());
     glDisable(GL_PROGRAM_POINT_SIZE);
 }
@@ -859,12 +940,22 @@ void GraphicsEngine::cleanup() {
     glDeleteBuffers(1, &terrainEBO);
     glDeleteProgram(terrainShaderProgram);
     
+    // Cleanup geometry buffers
+    glDeleteVertexArrays(1, &geometryVAO);
+    glDeleteBuffers(1, &geometryVBO);
+    glDeleteBuffers(1, &geometryEBO);
+    glDeleteProgram(geometryShaderProgram);
+    
     // ✅ FIX BUG-2: Limpiar módulos (unique_ptr se destruye automáticamente)
     inputManager.reset();
     cameraSystem.reset();
     gameLogic.reset();
     stateManager.reset();
     audioManager.reset();
+    if (particleSystem) {
+        particleSystem->clear();
+        particleSystem.reset();
+    }
     
     // Limpiar Perlin Noise
     if (perlinNoise) delete perlinNoise;

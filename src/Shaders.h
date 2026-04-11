@@ -1,6 +1,64 @@
 #pragma once
 
 /**
+ * ============================================================================
+ * PLANT GEOMETRY SHADER - Render modular plant atoms as triangles
+ * ============================================================================
+ * 
+ * Renders plants as actual triangle geometry from ParticleAtomSystem atoms.
+ * Uses diffuse lighting from multiple angles for natural appearance.
+ */
+inline const char* plantGeometryVertexShader = R"glsl(
+    #version 330 core
+    
+    layout (location = 0) in vec3 aPosition;
+    layout (location = 1) in vec3 aNormal;
+    layout (location = 2) in vec4 aColor;
+    
+    out vec4 vertexColor;
+    out vec3 fragNormal;
+    out vec3 fragPosition;
+    
+    uniform mat4 uProjection;
+    uniform mat4 uView;
+    uniform mat4 uModel;
+    
+    void main() {
+        fragPosition = vec3(uModel * vec4(aPosition, 1.0));
+        fragNormal = normalize(mat3(transpose(inverse(uModel))) * aNormal);
+        vertexColor = aColor;
+        gl_Position = uProjection * uView * vec4(fragPosition, 1.0);
+    }
+)glsl";
+
+inline const char* plantGeometryFragmentShader = R"glsl(
+    #version 330 core
+    
+    in vec4 vertexColor;
+    in vec3 fragNormal;
+    in vec3 fragPosition;
+    
+    out vec4 FragColor;
+    
+    void main() {
+        // Simple diffuse lighting from multiple angles
+        vec3 lightDir1 = normalize(vec3(1.0, 1.0, 1.0));
+        vec3 lightDir2 = normalize(vec3(-1.0, 0.5, -1.0));
+        vec3 lightDir3 = normalize(vec3(0.5, 0.3, 1.0));
+        
+        float diff1 = max(dot(fragNormal, lightDir1), 0.0) * 0.6;
+        float diff2 = max(dot(fragNormal, lightDir2), 0.0) * 0.2;
+        float diff3 = max(dot(fragNormal, lightDir3), 0.0) * 0.1;
+        float ambient = 0.15;
+        
+        float lighting = ambient + diff1 + diff2 + diff3;
+        
+        FragColor = vertexColor * lighting;
+        FragColor.a = vertexColor.a;
+    }
+)glsl";
+
+/**
  * VERTEX SHADER (Sombreador de Vértices)
  * 
  * Este shader se ejecuta para cada vértice que enviamos a OpenGL.

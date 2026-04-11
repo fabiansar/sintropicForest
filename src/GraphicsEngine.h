@@ -9,6 +9,7 @@
 #include "GameLogic.h"
 #include "StateManager.h"
 #include "AudioManager.h"
+#include "ParticleAtomSystem.h"
 
 // Forward declaration para evitar incluir GLFW aquí
 struct GLFWwindow;
@@ -32,13 +33,16 @@ private:
     std::unique_ptr<GameLogic> gameLogic;
     std::unique_ptr<StateManager> stateManager;
     std::unique_ptr<AudioManager> audioManager;
+    std::unique_ptr<ParticleAtom::ParticleAtomSystem> particleSystem;  // NEW: Modular plant system
     
     // VARIABLES GRÁFICAS
     GLFWwindow* window;
     unsigned int shaderProgram;      // Programa para renderizar plantas
     unsigned int terrainShaderProgram; // Programa para el terreno
+    unsigned int geometryShaderProgram = 0;  // NEW: Shader for atom triangles
     unsigned int VAO, VBO;           // Para plantas
     unsigned int terrainVAO, terrainVBO, terrainEBO; // Para terreno
+    unsigned int geometryVAO = 0, geometryVBO = 0, geometryEBO = 0;  // NEW: Geometry buffers
     
     // ✅ OPTIMIZACIÓN: Pre-allocate vertex buffer
     std::vector<float> vertexBuffer;  // Buffer reutilizable para cada frame
