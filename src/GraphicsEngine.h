@@ -80,6 +80,9 @@ private:
     void renderGameScene();
     void renderSettings();
     void renderCredits();
+    
+    // MÚSICA CLÁSICA (8-bit chiptune)
+    void playClassicalMusic(int musicType);  // 0=Ode to Joy, 1=Für Elise, 2=Eine kleine, 3=Clair, 4=Marcha
 
 public:
     GraphicsEngine();

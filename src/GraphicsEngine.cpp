@@ -4,6 +4,7 @@
 #include "GraphicsEngine.h"
 #include "Shaders.h"
 #include "Config.h"
+#include "ClassicalMusic.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -528,6 +529,23 @@ void GraphicsEngine::handleInput() {
                 audioManager->playSound(AudioManager::SOUND_DELETE_PLANT);
             }
         }
+        
+        // 🎵 MÚSICA CLÁSICA - Press F1-F5 to play different songs
+        if (inputState.keyF1) {
+            playClassicalMusic(0);  // Ode to Joy
+        }
+        if (inputState.keyF2) {
+            playClassicalMusic(1);  // Für Elise
+        }
+        if (inputState.keyF3) {
+            playClassicalMusic(2);  // Eine kleine Nachtmusik
+        }
+        if (inputState.keyF4) {
+            playClassicalMusic(3);  // Clair de Lune
+        }
+        if (inputState.keyF5) {
+            playClassicalMusic(4);  // Marcha de Zacatecas
+        }
     }
 }
 
@@ -1021,4 +1039,82 @@ void GraphicsEngine::cleanup() {
 
 bool GraphicsEngine::isRunning() {
     return !glfwWindowShouldClose(window);
+}
+
+// ============================================================================
+// 🎵 CLASSICAL MUSIC PLAYBACK (π π π π - 8-bit Chiptune)
+// ============================================================================
+
+void GraphicsEngine::playClassicalMusic(int musicType) {
+    if (!audioManager) return;
+    
+    const uint8_t* melody = nullptr;
+    int melodySize = 0;
+    const char* musicName = "Unknown Symphony";
+    
+    // Select melody based on type
+    switch (musicType) {
+        case 0:
+            melody = ClassicalMusic::ODE_TO_JOY.data();
+            melodySize = ClassicalMusic::ODE_TO_JOY.size();
+            musicName = "🎵 Ode to Joy - Beethoven";
+            break;
+        case 1:
+            melody = ClassicalMusic::FOR_ELISE.data();
+            melodySize = ClassicalMusic::FOR_ELISE.size();
+            musicName = "🎹 Für Elise - Beethoven";
+            break;
+        case 2:
+            melody = ClassicalMusic::EINE_KLEINE_NACHTMUSIK.data();
+            melodySize = ClassicalMusic::EINE_KLEINE_NACHTMUSIK.size();
+            musicName = "🎻 Eine kleine Nachtmusik - Mozart";
+            break;
+        case 3:
+            melody = ClassicalMusic::CLAIR_DE_LUNE.data();
+            melodySize = ClassicalMusic::CLAIR_DE_LUNE.size();
+            musicName = "💫 Clair de Lune - Debussy";
+            break;
+        case 4:
+            melody = ClassicalMusic::MARCHA_ZACATECAS.data();
+            melodySize = ClassicalMusic::MARCHA_ZACATECAS.size();
+            musicName = "🎺 Marcha de Zacatecas";
+            break;
+        default:
+            return;
+    }
+    
+    // Log the music being played
+    std::cout << "\n" << std::string(60, '=') << std::endl;
+    std::cout << "Now playing: " << musicName << std::endl;
+    std::cout << "Classical composition in 8-bit chiptune encoding (π π π π)" << std::endl;
+    std::cout << std::string(60, '=') << "\n" << std::endl;
+    
+    // Parse and play melody (pairs of [note, duration])
+    for (int i = 0; i + 1 < melodySize; i += 2) {
+        uint8_t noteIndex = melody[i];
+        uint8_t duration = melody[i + 1];
+        
+        // END marker
+        if (noteIndex == 255) break;
+        
+        // Get frequency from note index
+        float frequency = ClassicalMusic::getNoteFrequency(noteIndex);
+        
+        if (frequency > 0.0f) {
+            // Calculate duration in milliseconds (quarter note = 250ms for 120 BPM)
+            int durationMs = (duration * 125);  // Simplified: 1 unit = 125ms
+            
+            // Play the note by generating a simple sine wave tone
+            // In a real implementation, this would interface with a synthesizer or PCM audio
+            // For now, we just log it
+            if (noteIndex <= 12) {
+                std::cout << "  Note: " << frequency << " Hz (" << (int)duration << " ticks)" << std::endl;
+            }
+        } else {
+            // Rest
+            std::cout << "  Rest: " << (int)duration << " ticks" << std::endl;
+        }
+    }
+    
+    std::cout << "🎼 Piece complete - Gracias por escuchar!" << std::endl;
 }

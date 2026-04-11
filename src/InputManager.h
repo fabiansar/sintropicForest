@@ -33,6 +33,13 @@ public:
         bool keyRight = false;
         bool keyEscape = false;
         
+        // Function keys (for music and special features)
+        bool keyF1 = false;
+        bool keyF2 = false;
+        bool keyF3 = false;
+        bool keyF4 = false;
+        bool keyF5 = false;
+        
         // Mouse
         bool mouseLeftClick = false;
         bool mouseRightClick = false;
@@ -101,6 +108,13 @@ public:
         currentState.keyDown = glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS;
         currentState.keyLeft = glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS;
         currentState.keyRight = glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS;
+        
+        // Function keys for music (F1-F5)
+        currentState.keyF1 = glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS;
+        currentState.keyF2 = glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS;
+        currentState.keyF3 = glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS;
+        currentState.keyF4 = glfwGetKey(window, GLFW_KEY_F4) == GLFW_PRESS;
+        currentState.keyF5 = glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS;
         
         // ESC with debounce
         bool escapeRaw = glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS;

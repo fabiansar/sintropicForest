@@ -17,3 +17,6 @@
 7	518	7976492902936947	3DEngine.exe	781dc60ec28ea1b
 7	897	7976493321821080	CMakeFiles/3DEngine.dir/src/ParticleAtomSystem.cpp.obj	b7c980c27ec65236
 898	1377	7976493330761690	3DEngine.exe	781dc60ec28ea1b
+8	1149	7976496871133620	CMakeFiles/3DEngine.dir/src/main_new.cpp.obj	6f1047442e1a6425
+7	1257	7976497050956863	CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj	eb9008f095ff8972
+6	499	7976497189539786	3DEngine.exe	781dc60ec28ea1b
