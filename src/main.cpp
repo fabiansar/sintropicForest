@@ -28,6 +28,9 @@
 #include <cmath>                // Funciones matemáticas
 #include <chrono>               // Cronometraje del programa
 
+#include "CameraSystem.h"       // Sistema de cámara orbital
+#include "InputManager.h"       // Sistema de entrada de usuario
+
 // CONSTANTES DE CONFIGURACIÓN
 const int WINDOW_WIDTH = 1280;   // Ancho de la ventana en píxeles
 const int WINDOW_HEIGHT = 720;   // Alto de la ventana en píxeles
@@ -164,6 +167,10 @@ private:
     unsigned int VAO, VBO;    // VAO=contenedor, VBO=buffer de datos
     std::vector<Light> lights; // Lista de todos los puntos de luz
     
+    // SISTEMAS
+    CameraSystem camera;      // Sistema de cámara orbital
+    InputManager* inputManager; // Sistema de entrada del usuario
+    
     // VARIABLES DE TIMPIZACIÓN
     std::chrono::steady_clock::time_point splashStartTime; // Cuándo comenzó la splash
     
@@ -289,6 +296,10 @@ public:
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
 
+        // Inicializar InputManager y CameraSystem
+        inputManager = new InputManager(window);
+        camera.reset();
+
         return true;
     }
 
@@ -363,6 +374,35 @@ public:
      * @param deltaTime - Tiempo transcurrido desde el último fotograma
     */
     void update(float deltaTime) {
+        // PROCESAR INPUTS (solo en estado PLAYING)
+        if (currentState == PLAYING && inputManager) {
+            inputManager->update();
+            const auto& input = inputManager->getInputState();
+            
+            // MOVIMIENTO ROTADO DE CÁMARA
+            float moveSpeed = 0.5f;
+            float forward = 0.0f, right = 0.0f;
+            
+            if (input.keyW) forward += moveSpeed;
+            if (input.keyS) forward -= moveSpeed;
+            if (input.keyD) right += moveSpeed;
+            if (input.keyA) right -= moveSpeed;
+            
+            if (forward != 0.0f || right != 0.0f) {
+                camera.panTargetRotated(forward, right);
+            }
+            
+            // ROTACIÓN DE CÁMARA
+            float rotationSpeed = 1.0f;
+            if (input.keyQ) camera.rotate(-rotationSpeed);
+            if (input.keyE) camera.rotate(rotationSpeed);
+            
+            // ZOOM
+            float zoomSpeed = 0.5f;
+            if (input.keyUp) camera.adjustDistance(-zoomSpeed);
+            if (input.keyDown) camera.adjustDistance(zoomSpeed);
+        }
+
         // ACTUALIZAR POSICIÓN DE LUCES
         for (auto& light : lights) {
             // Mover la luz según su velocidad
@@ -531,10 +571,8 @@ public:
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), 
             (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
         
-        // Matriz de vista: posición y orientación de la cámara
-        glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 5.0f, 0.0f),    // Posición de la cámara
-            glm::vec3(0.0f, 0.0f, -20.0f),                          // A dónde mira
-            glm::vec3(0.0f, 1.0f, 0.0f));                           // Arriba
+        // Matriz de vista: USAR LA CÁMARA EN LUGAR DE HARDCODEAR
+        glm::mat4 view = camera.getViewMatrix();
         
         // Matriz de modelo: transformaciones del objeto (no usamos en este caso)
         glm::mat4 model = glm::mat4(1.0f);
@@ -581,6 +619,9 @@ public:
         ImGui::SetNextWindowBgAlpha(0.35f);  // Semi-transparente
         ImGui::Begin("Game Info", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
         ImGui::Text("ESC: Back to Menu");    // Instrucción
+        ImGui::Text("W/A/S/D: Move Camera");  // Nueva instrucción
+        ImGui::Text("Q/E: Rotate Camera");    // Nueva instrucción
+        ImGui::Text("UP/DOWN: Zoom");         // Nueva instrucción
         ImGui::Text("Lights: %d", NUM_LIGHTS);  // Cantidad de puntos
         ImGui::End();
 
