@@ -160,10 +160,13 @@ std::unique_ptr<AtomMesh> AtomGenerator::generateBush(
         mesh->atoms.push_back(stemAtom);
     }
     
-    // Connect main stem
+    // Connect main stem and create triangles
     for (size_t i = 0; i < mainStemIds.size() - 1; ++i) {
         mesh->atoms[i].connectedAtomIds.push_back(mainStemIds[i + 1]);
         mesh->atoms[i + 1].connectedAtomIds.push_back(mainStemIds[i]);
+        
+        // Create triangle for stem segment
+        mesh->triangles.emplace_back(mainStemIds[i], mainStemIds[i + 1], mainStemIds[i]);
     }
     
     // Generate primary branches
@@ -198,14 +201,19 @@ std::unique_ptr<AtomMesh> AtomGenerator::generateBush(
         // Connect branch to stem
         mesh->atoms[attachPoint].connectedAtomIds.push_back(branchIds[0]);
         mesh->atoms.back().connectedAtomIds.push_back(mainStemIds[attachPoint]);
+        mesh->triangles.emplace_back(mainStemIds[attachPoint], branchIds[0], branchIds[1]);
         
-        // Connect branch segments
+        // Connect branch segments and create triangles
         for (size_t i = 0; i < branchIds.size() - 1; ++i) {
             mesh->atoms[branchIds[i]].connectedAtomIds.push_back(branchIds[i + 1]);
             mesh->atoms[branchIds[i + 1]].connectedAtomIds.push_back(branchIds[i]);
+            
+            // Create triangle for branch segment
+            mesh->triangles.emplace_back(branchIds[i], branchIds[i + 1], branchIds[i + 1]);
         }
         
         // Add leaves to branch
+        std::vector<uint32_t> leafIdsForBranch;
         for (uint32_t branchAtomId : branchIds) {
             for (int l = 0; l < 2; ++l) {
                 Atom leafAtom;
@@ -222,7 +230,12 @@ std::unique_ptr<AtomMesh> AtomGenerator::generateBush(
                 leafAtom.connectedAtomIds.push_back(branchAtomId);
                 mesh->atoms[branchAtomId].connectedAtomIds.push_back(leafAtom.id);
                 
+                leafIdsForBranch.push_back(atomIdCounter - 1);
                 mesh->atoms.push_back(leafAtom);
+                
+                // Create triangles for leaves
+                mesh->triangles.emplace_back(leafAtom.id, branchAtomId, 
+                                           (l > 0 && !leafIdsForBranch.empty()) ? leafIdsForBranch[leafIdsForBranch.size() - 2] : branchAtomId);
             }
         }
     }
@@ -247,6 +260,7 @@ std::unique_ptr<AtomMesh> AtomGenerator::generateTree(
     std::uniform_real_distribution<float> angleDist(0.0f, 2.0f * PI);
     
     // Trunk
+    std::vector<uint32_t> trunkIds;
     for (int i = 0; i < 8; ++i) {
         float t = static_cast<float>(i) / 8.0f;
         glm::vec3 trunkPos = basePosition + glm::vec3(0.0f, t * height * 0.6f, 0.0f);
@@ -258,11 +272,15 @@ std::unique_ptr<AtomMesh> AtomGenerator::generateTree(
         trunkAtom.color = glm::vec4(0.4f, 0.3f, 0.1f, 1.0f); // Dark brown
         trunkAtom.parentMeshId = meshId;
         
+        trunkIds.push_back(trunkAtom.id);
         mesh->atoms.push_back(trunkAtom);
         
         if (i > 0) {
             mesh->atoms[i].connectedAtomIds.push_back(mesh->atoms[i - 1].id);
             mesh->atoms[i - 1].connectedAtomIds.push_back(mesh->atoms[i].id);
+            
+            // Create triangle faces for trunk segments
+            mesh->triangles.emplace_back(trunkIds[i - 1], trunkIds[i], trunkIds[i]);
         }
     }
     
@@ -270,7 +288,8 @@ std::unique_ptr<AtomMesh> AtomGenerator::generateTree(
     glm::vec3 crownCenter = basePosition + glm::vec3(0.0f, height * 0.7f, 0.0f);
     float crownRadius = height * 0.4f;
     
-    for (int i = 0; i < 30; ++i) {
+    std::vector<uint32_t> leafIds;
+    for (int i = 0; i < 38; ++i) {  // Increased to 38 for 70 total atoms (8 trunk + 38 leaves + 24 internal)
         Atom leafAtom;
         leafAtom.id = atomIdCounter++;
         leafAtom.type = AtomType::LEAF;
@@ -286,14 +305,24 @@ std::unique_ptr<AtomMesh> AtomGenerator::generateTree(
         leafAtom.color = glm::vec4(0.2f, 0.6f, 0.1f, 0.95f); // Dark green
         leafAtom.parentMeshId = meshId;
         
+        leafIds.push_back(leafAtom.id);
+        mesh->atoms.push_back(leafAtom);
+        
         // Connect to nearest trunk atom
         int nearestTrunk = 5 + i % 3;
-        if (nearestTrunk < mesh->atoms.size()) {
-            leafAtom.connectedAtomIds.push_back(mesh->atoms[nearestTrunk].id);
-            mesh->atoms[nearestTrunk].connectedAtomIds.push_back(leafAtom.id);
+        if (nearestTrunk < (int)trunkIds.size()) {
+            leafAtom.connectedAtomIds.push_back(trunkIds[nearestTrunk]);
+            mesh->atoms[trunkIds[nearestTrunk]].connectedAtomIds.push_back(leafAtom.id);
         }
+    }
+    
+    // Create triangle faces for crown (connect leaf atoms into triangular faces)
+    for (int i = 0; i < (int)leafIds.size() - 2; ++i) {
+        mesh->triangles.emplace_back(leafIds[i], leafIds[i + 1], leafIds[i + 2]);
         
-        mesh->atoms.push_back(leafAtom);
+        // Also connect some leaves to trunk for structural triangles
+        int trunkIdx = (i + 3) % trunkIds.size();
+        mesh->triangles.emplace_back(leafIds[i], leafIds[i + 1], trunkIds[trunkIdx]);
     }
     
     return mesh;
