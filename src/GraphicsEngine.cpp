@@ -1,9 +1,10 @@
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 #include "GraphicsEngine.h"
 #include "Shaders.h"
 #include "Config.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -47,20 +48,13 @@ static unsigned int compileShader(const char* source, GLenum type) {
 // ============================================================================
 
 GraphicsEngine::GraphicsEngine() 
-    : currentState(SPLASH), nextState(SPLASH), window(nullptr), 
+    : window(nullptr), 
       shaderProgram(0), terrainShaderProgram(0), VAO(0), VBO(0),
       terrainVAO(0), terrainVBO(0), terrainEBO(0), terrainVertexCount(0),
       masterVolume(0.8f),
-      cameraPos(0.0f, CAMERA_HEIGHT, 0.0f),
-      cameraTarget(0.0f, 0.0f, 0.0f),
-      cameraRotation(0.0f),
-      leftMousePressed(false),
-      lastMouseX(0.0), lastMouseY(0.0),
       elapsedTime(0.0f),
-      perlinNoise(nullptr),
-      projectionDirty(true),
-      viewDirty(true) {
-    splashStartTime = std::chrono::steady_clock::now();
+      perlinNoise(nullptr) {
+    // Sistemas modulares se inicializarán después de que GLFW esté listo
     perlinNoise = new PerlinNoise(42);  // Seed para consistencia
 }
 
@@ -177,6 +171,13 @@ bool GraphicsEngine::initialize() {
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
+    // PASO 11: Inicializar sistemas modulares
+    inputManager = std::make_unique<InputManager>(window);
+    cameraSystem = std::make_unique<CameraSystem>();
+    gameLogic = std::make_unique<GameLogic>();
+    stateManager = std::make_unique<StateManager>();
+    audioManager = std::make_unique<AudioManager>();
+
     return true;
 }
 
@@ -185,8 +186,9 @@ bool GraphicsEngine::initialize() {
 // ============================================================================
 
 void GraphicsEngine::initializeLights() {
-    plants.clear();
-    
+    if (gameLogic) {
+        gameLogic->reset();
+    }
     // No inicializar plantas - el mapa comienza vacío
     // El usuario creará plantas con clicks del ratón
 }
@@ -273,21 +275,20 @@ void GraphicsEngine::generateTerrain() {
 // ============================================================================
 
 glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
+    if (!cameraSystem) {
+        return glm::vec3(0.0f);
+    }
+
     // Normalizar coordenadas del mouse a -1 a 1
     float nx = (2.0f * mouseX) / WINDOW_WIDTH - 1.0f;
     float ny = 1.0f - (2.0f * mouseY) / WINDOW_HEIGHT;
 
-    // Crear matrices
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f),
-        (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
+    // Crear matrices usando CameraSystem
+    glm::mat4 projection = CameraSystem::getProjectionMatrix(WINDOW_WIDTH, WINDOW_HEIGHT);
+    glm::mat4 view = cameraSystem->getViewMatrix();
     
-    glm::vec3 camPos = cameraTarget + glm::vec3(
-        cos(glm::radians(cameraRotation)) * CAMERA_DISTANCE,
-        CAMERA_HEIGHT,
-        sin(glm::radians(cameraRotation)) * CAMERA_DISTANCE
-    );
+    glm::vec3 camPos = cameraSystem->getPosition();
     
-    glm::mat4 view = glm::lookAt(camPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 invView = glm::inverse(view);
     glm::mat4 invProj = glm::inverse(projection);
 
@@ -315,28 +316,13 @@ glm::vec3 GraphicsEngine::getRaycastHit(double mouseX, double mouseY) {
 }
 
 // ============================================================================
-// AGREGAR LUZ ALEATORIA EN UNA POSICIÓN
+// AGREGAR PLANTA ALEATORIA EN UNA POSICIÓN
 // ============================================================================
 
 void GraphicsEngine::addPlant(const glm::vec3& position) {
-    std::mt19937 gen(std::random_device{}());
-    std::uniform_real_distribution<float> dist_rand(0.0f, 1.0f);
-
-    Plant newPlant;
-    newPlant.position = position;
-    newPlant.createdTime = elapsedTime;  // Guardar tiempo de creación para animación
-
-    // Determinar tipo de planta por probabilidad
-    float rand = dist_rand(gen);
-    if (rand < plantProbabilityTree) {
-        newPlant.type = TREE;
-    } else if (rand < plantProbabilityTree + plantProbabilityBush) {
-        newPlant.type = BUSH;
-    } else {
-        newPlant.type = GRASS;
+    if (gameLogic) {
+        gameLogic->addPlant(position);
     }
-
-    plants.push_back(newPlant);
 }
 
 // ============================================================================
@@ -344,112 +330,107 @@ void GraphicsEngine::addPlant(const glm::vec3& position) {
 // ============================================================================
 
 void GraphicsEngine::handleInput() {
-    // Manejar ESC (una vez por pulsación)
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-        if (!escapePressed) {  // Solo ejecutar UNA vez por pulsación
-            escapePressed = true;
-            if (currentState == PLAYING) {
-                nextState = MENU;
-            } else if (currentState == SETTINGS) {
-                nextState = MENU;
-            } else if (currentState == MENU) {
-                nextState = MENU;  // Ya estamos en menú, no hacer nada
-            }
-        }
-    } else {
-        escapePressed = false;  // Resetear cuando se suelta ESC
+    if (!inputManager || !cameraSystem || !gameLogic || !stateManager || !audioManager) {
+        return;
     }
 
-    if (currentState == PLAYING) {
-        // Rotación de cámara con Q y E (ahora más rápida)
-        if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
-            cameraRotation += CAMERA_ROTATION_SPEED * 0.016f;
+    // Actualizar estado de inputs
+    inputManager->update();
+    const auto& inputState = inputManager->getState();
+
+    // SIEMPRE procesable: scroll wheel para zoom (en cualquier estado)
+    if (inputState.scrollY != 0.0) {
+        float zoomDelta = inputState.scrollY * 2.0f;  // 2 unidades por scroll
+        cameraSystem->adjustDistance(-zoomDelta);  // Negativo porque scroll up = zoom in
+    }
+
+    // Manejar ESC - transición a menú
+    if (inputState.keyEscape) {
+        if (stateManager->isInState(PLAYING)) {
+            stateManager->requestTransition(MENU);
+            cameraSystem->reset();
+        } else if (stateManager->isInState(SETTINGS)) {
+            stateManager->requestTransition(MENU);
         }
-        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
-            cameraRotation -= CAMERA_ROTATION_SPEED * 0.016f;
+    }
+
+    // Controles solo en estado PLAYING
+    if (stateManager->isInState(PLAYING)) {
+        // Rotación de cámara con Q y E
+        if (inputState.keyQ) {
+            cameraSystem->rotate(CAMERA_ROTATION_SPEED * 0.016f);
+        }
+        if (inputState.keyE) {
+            cameraSystem->rotate(-CAMERA_ROTATION_SPEED * 0.016f);
         }
 
         // Movimiento de cámara con FLECHAS (lento, sin rotación)
-        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-            cameraTarget.z -= 0.3f;
+        if (inputState.keyUp) {
+            cameraSystem->panTarget(0.0f, -0.3f);
         }
-        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-            cameraTarget.z += 0.3f;
+        if (inputState.keyDown) {
+            cameraSystem->panTarget(0.0f, 0.3f);
         }
-        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-            cameraTarget.x -= 0.3f;
+        if (inputState.keyLeft) {
+            cameraSystem->panTarget(-0.3f, 0.0f);
         }
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-            cameraTarget.x += 0.3f;
+        if (inputState.keyRight) {
+            cameraSystem->panTarget(0.3f, 0.0f);
         }
 
-        // Movimiento WASD (RÁPIDO, ROTADO según la cámara)
+        // Movimiento WASD (RÁPIDO, ROTADO según rotación de cámara)
         glm::vec2 moveInput = glm::vec2(0.0f, 0.0f);
-        float moveSpeed = CAMERA_MOVEMENT_SPEED * 0.016f;
         
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-            moveInput += glm::vec2(0.0f, -1.0f);  // Adelante
+        if (inputState.keyW) {
+            moveInput.y -= 1.0f;  // Adelante
         }
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-            moveInput += glm::vec2(0.0f, 1.0f);   // Atrás
+        if (inputState.keyS) {
+            moveInput.y += 1.0f;  // Atrás
         }
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-            moveInput += glm::vec2(-1.0f, 0.0f);  // Izquierda
+        if (inputState.keyA) {
+            moveInput.x -= 1.0f;  // Izquierda
         }
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-            moveInput += glm::vec2(1.0f, 0.0f);   // Derecha
+        if (inputState.keyD) {
+            moveInput.x += 1.0f;  // Derecha
         }
 
-        // Rotar el movimiento según la rotación de la cámara
         if (glm::length(moveInput) > 0.0f) {
-            float angle = glm::radians(cameraRotation);
-            float cosA = cos(angle);
-            float sinA = sin(angle);
-            
-            float x = moveInput.x * cosA - moveInput.y * sinA;
-            float z = moveInput.x * sinA + moveInput.y * cosA;
-            
-            cameraTarget.x += x * moveSpeed;
-            cameraTarget.z += z * moveSpeed;
+            float moveSpeed = CAMERA_MOVEMENT_SPEED * 0.016f;
+            cameraSystem->panTargetRotated(moveInput.y * moveSpeed, moveInput.x * moveSpeed);
         }
 
-        // Detectar clicks del ratón izquierdo
-        int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
-        if (state == GLFW_PRESS && !leftMousePressed) {
-            leftMousePressed = true;
-            
-            // Obtener posición del ratón y hacer raycast
-            double mouseX, mouseY;
-            glfwGetCursorPos(window, &mouseX, &mouseY);
-            glm::vec3 hitPos = getRaycastHit(mouseX, mouseY);
-            
-            // Agregar planta en esa posición
-            if (plants.size() < MAX_LIGHTS) {
+        // LEFT CLICK - Agregar planta
+        if (inputState.mouseLeftClick) {
+            glm::vec3 hitPos = getRaycastHit(inputState.mouseX, inputState.mouseY);
+            if (gameLogic->getPlantCount() < (size_t)MAX_LIGHTS) {
                 addPlant(hitPos);
+                audioManager->playSound(AudioManager::SOUND_PLACE_PLANT);
             }
-        } else if (state == GLFW_RELEASE) {
-            leftMousePressed = false;
+        }
+
+        // RIGHT CLICK - Eliminar planta más cercana
+        if (inputState.mouseRightClick) {
+            glm::vec3 hitPos = getRaycastHit(inputState.mouseX, inputState.mouseY);
+            if (gameLogic->removeNearestPlant(hitPos, 3.0f)) {
+                audioManager->playSound(AudioManager::SOUND_DELETE_PLANT);
+            }
         }
     }
 }
 
 void GraphicsEngine::update(float deltaTime) {
+    if (!stateManager || !gameLogic) {
+        return;
+    }
+
     // Actualizar tiempo transcurrido
     elapsedTime += deltaTime;
 
-    // Las plantas son estáticas, no necesitan actualizar posición
-    // (La animación de color se realiza en renderPlants())
+    // Actualizar estado
+    stateManager->update();
 
-    // Gestionar splash screen
-    if (currentState == SPLASH) {
-        auto elapsed = std::chrono::steady_clock::now() - splashStartTime;
-        if (std::chrono::duration_cast<std::chrono::seconds>(elapsed).count() >= 3) {
-            currentState = MENU;
-            nextState = MENU;
-        }
-    } else {
-        currentState = nextState;
-    }
+    // Actualizar lógica del juego
+    gameLogic->update(deltaTime);
 }
 
 // ============================================================================
@@ -457,17 +438,23 @@ void GraphicsEngine::update(float deltaTime) {
 // ============================================================================
 
 void GraphicsEngine::render() {
+    if (!stateManager) {
+        return;
+    }
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if (currentState == SPLASH) {
+    GameState state = stateManager->getCurrentState();
+    
+    if (state == SPLASH) {
         renderSplashScreen();
-    } else if (currentState == MENU) {
+    } else if (state == MENU) {
         renderMenu();
-    } else if (currentState == PLAYING) {
+    } else if (state == PLAYING) {
         renderGameScene();
-    } else if (currentState == SETTINGS) {
+    } else if (state == SETTINGS) {
         renderSettings();
-    } else if (currentState == CREDITS) {
+    } else if (state == CREDITS) {
         renderCredits();
     }
 
@@ -522,23 +509,27 @@ void GraphicsEngine::renderMenu() {
     ImGui::Spacing();
 
     if (ImGui::Button("Play", ImVec2(250, 50))) {
-        nextState = PLAYING;
-        initializeLights();
-        // Resetear cámara
-        cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-        cameraRotation = 0.0f;
+        if (stateManager) {
+            stateManager->requestTransition(PLAYING);
+            initializeLights();
+            cameraSystem->reset();
+        }
     }
 
     ImGui::Spacing();
 
     if (ImGui::Button("Settings", ImVec2(250, 50))) {
-        nextState = SETTINGS;
+        if (stateManager) {
+            stateManager->requestTransition(SETTINGS);
+        }
     }
 
     ImGui::Spacing();
 
     if (ImGui::Button("Credits", ImVec2(250, 50))) {
-        nextState = CREDITS;
+        if (stateManager) {
+            stateManager->requestTransition(CREDITS);
+        }
     }
 
     ImGui::End();
@@ -547,18 +538,13 @@ void GraphicsEngine::renderMenu() {
 }
 
 void GraphicsEngine::renderGameScene() {
-    // CÁMARA TIPO JUEGO DE GESTIÓN/ESTRATEGIA
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 
-        (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
-    
-    // Calcular posición de cámara en órbita isométrica
-    glm::vec3 camPos = cameraTarget + glm::vec3(
-        cos(glm::radians(cameraRotation)) * CAMERA_DISTANCE,
-        CAMERA_HEIGHT,
-        sin(glm::radians(cameraRotation)) * CAMERA_DISTANCE
-    );
-    
-    glm::mat4 view = glm::lookAt(camPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
+    if (!cameraSystem || !gameLogic) {
+        return;
+    }
+
+    // Obtener matrices de CameraSystem
+    glm::mat4 projection = CameraSystem::getProjectionMatrix(WINDOW_WIDTH, WINDOW_HEIGHT);
+    glm::mat4 view = cameraSystem->getViewMatrix();
     glm::mat4 model = glm::mat4(1.0f);
 
     // ===== RENDERIZAR TERRENO =====
@@ -572,7 +558,26 @@ void GraphicsEngine::renderGameScene() {
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    glUniform1f(timeLoc, elapsedTime);  // Pasar tiempo para animación
+    glUniform1f(timeLoc, elapsedTime);
+
+    // Pasar posiciones y colores de plantas al shader del terreno
+    const auto& plants = gameLogic->getPlants();
+    int plantCount = (int)plants.size();
+    GLint plantCountLoc = glGetUniformLocation(terrainShaderProgram, "uPlantCount");
+    glUniform1i(plantCountLoc, plantCount);
+
+    for (int i = 0; i < plantCount && i < MAX_LIGHTS; ++i) {
+        std::string posName = "uPlantPositions[" + std::to_string(i) + "]";
+        std::string colName = "uPlantColors[" + std::to_string(i) + "]";
+        
+        glm::vec3 color;
+        if (plants[i].type == GRASS) color = PLANT_COLOR_GRASS;
+        else if (plants[i].type == BUSH) color = PLANT_COLOR_BUSH;
+        else color = PLANT_COLOR_TREE;
+        
+        glUniform3fv(glGetUniformLocation(terrainShaderProgram, posName.c_str()), 1, glm::value_ptr(plants[i].position));
+        glUniform3fv(glGetUniformLocation(terrainShaderProgram, colName.c_str()), 1, glm::value_ptr(color));
+    }
 
     glBindVertexArray(terrainVAO);
     glDrawElements(GL_TRIANGLES, terrainVertexCount, GL_UNSIGNED_INT, 0);
@@ -588,12 +593,9 @@ void GraphicsEngine::renderGameScene() {
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-    // ===== RENDERIZAR PLANTAS CON GEOMETRÍA PROCEDURAL (NUEVO) =====
     renderPlants();
 
     // ===== UI INFORMACIÓN =====
-    renderTerrain();  // Esta función solo maneja ImGui
-
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -605,22 +607,19 @@ void GraphicsEngine::renderGameScene() {
     
     // Contar plantas por tipo
     int grassCount = 0, bushCount = 0, treeCount = 0;
-    for (const auto& plant : plants) {
-        if (plant.type == GRASS) grassCount++;
-        else if (plant.type == BUSH) bushCount++;
-        else if (plant.type == TREE) treeCount++;
-    }
+    gameLogic->getPlantCounts(grassCount, bushCount, treeCount);
     
-    ImGui::Text("Plants: %d / %d", (int)plants.size(), MAX_LIGHTS);
-    ImGui::Text("  Grass: %d (80%%)", grassCount);
-    ImGui::Text("  Bush: %d (15%%)", bushCount);
-    ImGui::Text("  Tree: %d (5%%)", treeCount);
+    ImGui::Text("Plants: %zu / %d", gameLogic->getPlantCount(), MAX_LIGHTS);
+    ImGui::Text("  Grass: %d", grassCount);
+    ImGui::Text("  Bush: %d", bushCount);
+    ImGui::Text("  Tree: %d", treeCount);
     ImGui::Separator();
     ImGui::Text("Q/E: Rotate | WASD: Move");
     ImGui::Text("Arrows: Slow Move | Click: Plant");
     ImGui::Separator();
-    ImGui::Text("Camera Pos: %.1f, %.1f", cameraTarget.x, cameraTarget.z);
-    ImGui::Text("Rotation: %.1f degrees", cameraRotation);
+    glm::vec2 camXZ = cameraSystem->getTargetXZ();
+    ImGui::Text("Camera Pos: %.1f, %.1f", camXZ.x, camXZ.y);
+    ImGui::Text("Rotation: %.1f degrees", cameraSystem->getRotation());
     ImGui::End();
 
     ImGui::Render();
@@ -633,6 +632,10 @@ void GraphicsEngine::renderTerrain() {
 }
 
 void GraphicsEngine::renderSettings() {
+    if (!stateManager || !gameLogic) {
+        return;
+    }
+
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -644,15 +647,25 @@ void GraphicsEngine::renderSettings() {
     ImGui::Begin("Configuración", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 
     ImGui::SliderFloat("Master Volume", &masterVolume, 0.0f, 1.0f);
+    if (audioManager) {
+        audioManager->setMasterVolume(masterVolume);
+    }
     
     ImGui::Separator();
     ImGui::Text("Configuracion de Plantas:");
     ImGui::Separator();
     
     // Probabilidades
-    ImGui::SliderFloat("Probabilidad Arboles (%%)", &plantProbabilityTree, 0.0f, 0.5f, "%.2f");
-    ImGui::SliderFloat("Probabilidad Arbustos (%%)", &plantProbabilityBush, 0.0f, 0.5f, "%.2f");
-    ImGui::Text("Probabilidad Hierba: %.2f", 1.0f - plantProbabilityTree - plantProbabilityBush);
+    float treeProb = gameLogic->getTreeProbability();
+    float bushProb = gameLogic->getBushProbability();
+    
+    ImGui::SliderFloat("Probabilidad Arboles (%%)", &treeProb, 0.0f, 0.5f, "%.2f");
+    gameLogic->setTreeProbability(treeProb);
+    
+    ImGui::SliderFloat("Probabilidad Arbustos (%%)", &bushProb, 0.0f, 0.5f, "%.2f");
+    gameLogic->setBushProbability(bushProb);
+    
+    ImGui::Text("Probabilidad Hierba: %.2f", gameLogic->getGrassProbability());
     
     ImGui::Separator();
     ImGui::Text("Tamanios de Punto:");
@@ -667,7 +680,7 @@ void GraphicsEngine::renderSettings() {
     ImGui::Spacing();
 
     if (ImGui::Button("Atras", ImVec2(350, 50))) {
-        nextState = MENU;
+        stateManager->requestTransition(MENU);
     }
 
     ImGui::End();
@@ -676,6 +689,10 @@ void GraphicsEngine::renderSettings() {
 }
 
 void GraphicsEngine::renderCredits() {
+    if (!stateManager) {
+        return;
+    }
+
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -702,7 +719,7 @@ void GraphicsEngine::renderCredits() {
     ImGui::Spacing();
 
     if (ImGui::Button("Back", ImVec2(350, 50))) {
-        nextState = MENU;
+        stateManager->requestTransition(MENU);
     }
 
     ImGui::End();
@@ -719,15 +736,21 @@ void GraphicsEngine::generatePlantGeometry() {
 }
 
 void GraphicsEngine::renderPlants() {
+    if (!gameLogic) {
+        return;
+    }
+
     glUseProgram(shaderProgram);
     
     // Preparar datos de vértices para todos los puntos
     std::vector<float> vertices;
+    const auto& plants = gameLogic->getPlants();
+    float gameTime = gameLogic->getElapsedTime();
     
     for (const auto& plant : plants) {
         // Calcular color con animación flash al crear
         glm::vec3 color;
-        float timeSinceCreation = elapsedTime - plant.createdTime;
+        float timeSinceCreation = gameTime - plant.createdTime;
         
         // Determinar color base según tipo
         if (plant.type == GRASS) {
@@ -790,23 +813,6 @@ void GraphicsEngine::renderPlants() {
     // Tamaño (1 float)
     glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
-    
-    // Configurar matrices
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f),
-        (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
-    
-    glm::vec3 camPos = cameraTarget + glm::vec3(
-        cos(glm::radians(cameraRotation)) * CAMERA_DISTANCE,
-        CAMERA_HEIGHT,
-        sin(glm::radians(cameraRotation)) * CAMERA_DISTANCE
-    );
-    
-    glm::mat4 view = glm::lookAt(camPos, cameraTarget, glm::vec3(0.0f, 1.0f, 0.0f));
-    glm::mat4 model = glm::mat4(1.0f);
-    
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uProjection"), 1, GL_FALSE, glm::value_ptr(projection));
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uView"), 1, GL_FALSE, glm::value_ptr(view));
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "uModel"), 1, GL_FALSE, glm::value_ptr(model));
     
     // Renderizar puntos
     glEnable(GL_PROGRAM_POINT_SIZE);

@@ -79,7 +79,7 @@ void main()
  * FRAGMENT SHADER PARA EL TERRENO
  * 
  * Renderiza el terreno tipo tierra/suelo con variaciones de marrón.
- * Cambio dinámico según la proximidad de luces.
+ * Iluminación dinámica real basada en posiciones de plantas.
 */
 inline const char* terrainFragmentShaderSource = R"(
 #version 330 core
@@ -88,44 +88,52 @@ in vec3 vertexPos;
 
 out vec4 FragColor;
 
-uniform float uTime;  // Tiempo transcurrido en segundos
+uniform float uTime;
+uniform int uPlantCount;
+uniform vec3 uPlantPositions[500];
+uniform vec3 uPlantColors[500];
 
 void main()
 {
     // Color base: tierra marrón oscuro
     vec3 colorSoil = vec3(0.35, 0.25, 0.15);
     
-    // Color más oscuro: tierra mojada
-    vec3 colorDarkSoil = vec3(0.25, 0.18, 0.1);
-    
-    // Calcularharia influencia de luces
-    float lightInfluence = 0.0;
-    
-    // Patrón de grid para detectar si "hay luces"
-    float gridX = mod(vertexPos.x + 2.0, 4.0);
-    float gridZ = mod(vertexPos.z + 2.0, 4.0);
-    
-    // Si estamos en una esquina del grid, consideramos que hay luz
-    if ((gridX < 1.0 || gridX > 3.0) && (gridZ < 1.0 || gridZ > 3.0)) {
-        lightInfluence = 0.5;  // 50% más oscuro aquí
-    } else if (sin(uTime * 0.5) > 0.0) {
-        lightInfluence = 0.2 + 0.1 * sin(uTime * 0.3);
-    }
-    
-    // Mezclar colores
-    vec3 color = mix(colorSoil, colorDarkSoil, lightInfluence);
-    
     // Luz direccional simple (desde arriba)
     vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-    float diff = max(dot(vertexNormal, lightDir), 0.4);  // 0.4 = tierra más oscura
+    float diff = max(dot(vertexNormal, lightDir), 0.4);
     
-    // Aplicar iluminación
-    vec3 result = color * diff;
+    // Iluminación base
+    vec3 result = colorSoil * diff;
     
-    // Patrón de cracks/textura sutil
+    // Acumular iluminación REAL de cada planta cercana
+    float totalLight = 0.0;
+    vec3 lightColor = vec3(0.0);
+    
+    for (int i = 0; i < uPlantCount; i++) {
+        vec3 toPlant = uPlantPositions[i] - vertexPos;
+        float dist = length(vec2(toPlant.x, toPlant.z));
+        float radius = 15.0;
+        
+        if (dist < radius) {
+            float attenuation = 1.0 - (dist / radius);
+            attenuation = attenuation * attenuation;  // Cuadrático = más realista
+            float intensity = attenuation * 0.6;
+            totalLight += intensity;
+            lightColor += uPlantColors[i] * intensity;
+        }
+    }
+    
+    // Aplicar iluminación de plantas al terreno
+    if (totalLight > 0.0) {
+        lightColor /= totalLight;  // Normalizar color
+        totalLight = min(totalLight, 1.5);  // Clamp para evitar sobreexposición
+        result += lightColor * totalLight * 0.4;
+    }
+    
+    // Textura sutil de tierra
     float cracks = mod(vertexPos.x * 0.3, 1.0) + mod(vertexPos.z * 0.3, 1.0);
     cracks = step(1.8, cracks);
-    result += cracks * 0.05;
+    result += cracks * 0.03;
     
     FragColor = vec4(result, 1.0);
 }

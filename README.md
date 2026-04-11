@@ -1,103 +1,72 @@
 # 🌿 3D Graphics Engine - Plant Ecosystem Simulator
 
-Una aplicación 3D interactiva que simula un ecosistema de plantas. Construida con **C++ 17** y **OpenGL 3.3 Core Profile**, demostrando arquitectura escalable para juegos y simulaciones.
+Una aplicación 3D interactiva en C++ 17 + OpenGL 3.3 que simula un ecosistema de plantas con arquitectura modular y escalable.
 
-## 🎮 Características
+## 🎮 Características Principales
 
-- ✨ **Motor Gráfico Profesional**: OpenGL 3.3, GLFW, ImGui
-- 🌱 **Simulador de Plantas**: 3 tipos (Hierba, Arbusto, Árbol) con generación probabilística
-- 🎯 **Interactividad**: Click para plantar, WASD para mover, cámara isométrica
-- 🏗️ **Arquitectura Escalable**: Código modular, fácil de extender
-- 📚 **Documentación Profesional**: 8 guías técnicas para desarrolladores
-- 🎨 **Interfaz Intuitiva**: Menú principal, configuración, créditos
+- ✨ **Motor Gráfico**: OpenGL 3.3 Core, GLFW, ImGui  
+- 🌱 **Sistema de Plantas**: 3 tipos (Hierba, Arbusto, Árbol) con probabilidades configurables
+- 🎯 **Interactivo**: Click para plantar, WASD para mover, cámara isométrica orbital
+- 🏗️ **Arquitectura Modular**: InputManager, CameraSystem, GameLogic, StateManager
+- 🎨 **Interfaz Completa**: Menú, Settings, Créditos, UI en ImGui
 
 ## 🚀 Quick Start
 
-### Requisitos
-- Windows 10+
-- C++ 17 compatible compiler (LLVM/Clang recomendado)
-- CMake 3.0+
-- Git (para clonar)
-
-### Compilar
-
 ```powershell
+# Compilar
 cd c:\Users\elfab\Documents\IA
 powershell .\build.ps1
-```
 
-**Resultado esperado**: "Build complete!" sin errores ✓
-
-### Ejecutar
-
-```powershell
+# Ejecutar
 .\build\3DEngine.exe
 ```
 
-## 🎮 Controles del Juego
+## 🎮 Controles
 
-| Acción | Efecto |
-|--------|--------|
-| **Click Izquierdo** | Plantar en terreno |
-| **WASD** | Mover vista (rápido, rotado con cámara) |
-| **Flechas** | Mover vista (lento) |
-| **Q/E** | Rotar cámara |
-| **ESC** | Volver al menú |
+| Tecla | Acción |
+|-------|--------|
+| Click Izquierdo | Plantar en terreno |
+| WASD | Mover vista (rápido, según ángulo cámara) |
+| Flechas | Mover vista (lento) |
+| Q/E | Rotar cámara |
+| ESC | Volver a menú |
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura
 
 ```
 src/
-├── main_new.cpp              ← Punto de entrada (60 líneas)
-├── GraphicsEngine.h/cpp      ← Motor gráfico (coordinador)
-├── Config.h                  ← Configuración centralizada
-├── Shaders.h                 ← Código GLSL
-├── PerlinNoise.h             ← Generador de ruido + geometría procedural
-└── CMakeLists.txt            ← Build configuration
-
-docs/ (Documentación)
-├── QUICK_START.md            ← Compilación rápida
-├── README.md                 ← Este archivo
-├── ARQUITECTURA_ESCALABLE.md ← Diseño y patrones (✨ CON DIAGRAMAS)
-├── API_REFERENCE.md          ← ✨ NUEVO: Referencia completa de API
-├── STATUS.md                 ← ✨ NUEVO: Estado de componentes
-├── TROUBLESHOOTING.md        ← ✨ NUEVO: Solución de problemas
-├── EXTENSIBILIDAD_Y_ESCALABILIDAD.md ← Cómo agregar features
-├── GUIA_PARA_NUEVOS_DESARROLLADORES.md ← Onboarding
-├── DOCUMENTACION_TECNICA.md  ← Deep dive del código
-├── ESTRUCTURA_DEL_PROYECTO.md ← Explicación modular
-├── GESTION_3D.md            ← Guía del generador
-└── CONTROLES_FPS.md         ← Sistema de cámara
+├── main_new.cpp          Punto de entrada (70 LOC)
+├── GraphicsEngine.h/cpp  Motor gráfico (180 LOC refactorizado)
+├── InputManager.h        Manejo de entrada
+├── CameraSystem.h        Sistema de cámara
+├── GameLogic.h           Lógica del juego
+├── StateManager.h        Máquina de estados
+├── Config.h              Configuración centralizada
+├── Shaders.h             Códigos GLSL
+└── PerlinNoise.h         Generador procedural
 ```
 
-## 💡 Para Nuevos Desarrolladores
+## 📚 Documentación
 
-**Comienza aquí**: [GUIA_PARA_NUEVOS_DESARROLLADORES.md](GUIA_PARA_NUEVOS_DESARROLLADORES.md)
+- **[QUICK_START.md](QUICK_START.md)** - Tutorial paso a paso para principiantes
+- **[ARCHITECTURAL_REFACTORING_PLAN.md](ARCHITECTURAL_REFACTORING_PLAN.md)** - Análisis arquitectónico y refactorización
+- **[FINAL_VALIDATION.md](FINAL_VALIDATION.md)** - Validación y estado actual
 
-- ✅ Entender arquitectura (15 min)
-- ✅ Hacer cambios simples (30 min)
-- ✅ Agregar características (1-2 horas)
+## 💻 Requisitos
 
-## 🏗️ Arquitectura
+- Windows 10+ 
+- C++ 17 compiler (Clang/LLVM recomendado)
+- CMake 3.0+
+- Dependencias: OpenGL 3.3, GLFW 3.3, GLM, ImGui
 
-### Actual (Monolítica)
+## 🏗️ Arquitectura Actual
+
 ```
-GraphicsEngine (700+ líneas)
-├─ Inicialización OpenGL
-├─ Renderizado
-├─ Lógica de juego
-├─ Gestión de entrada
-└─ Actualización
-```
-
-### Propuesta (Escalable)
-```
-main.cpp (coordinador)
-├─ GameManager (lógica)
-├─ EntityManager (entidades)
-├─ Renderer (gráficos)
-├─ Camera (cámara)
-├─ InputManager (entrada)
+GraphicsEngine (Coordinador)
+├─ InputManager (teclado/mouse sólo)
+├─ CameraSystem (cálculos de cámara)
+├─ GameLogic (plantas, lógica pura)
+└─ StateManager (máquina de estados)
 └─ EventSystem (comunicación)
 ```
 

@@ -1,4 +1,4 @@
 # ninja log v7
-3	672	7975673960502463	CMakeFiles/3DEngine.dir/src/main_new.cpp.obj	6f1047442e1a6425
-7	878	7975673960536719	CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj	eb9008f095ff8972
-879	1353	7975673969253177	3DEngine.exe	e469b205dd3a1965
+3	980	7976415772938475	CMakeFiles/3DEngine.dir/src/main_new.cpp.obj	6f1047442e1a6425
+7	1119	7976415772957481	CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj	eb9008f095ff8972
+1120	1581	7976415784070904	3DEngine.exe	e469b205dd3a1965

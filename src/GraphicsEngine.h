@@ -1,10 +1,14 @@
 #pragma once
 
 #include <vector>
-#include <chrono>
-#include <map>
+#include <memory>
 #include "Config.h"
 #include "PerlinNoise.h"
+#include "InputManager.h"
+#include "CameraSystem.h"
+#include "GameLogic.h"
+#include "StateManager.h"
+#include "AudioManager.h"
 
 // Forward declaration para evitar incluir GLFW aquí
 struct GLFWwindow;
@@ -22,9 +26,12 @@ struct GLFWwindow;
 */
 class GraphicsEngine {
 private:
-    // VARIABLES DE ESTADO
-    GameState currentState;
-    GameState nextState;
+    // SISTEMAS MODULARES (delegados)
+    std::unique_ptr<InputManager> inputManager;
+    std::unique_ptr<CameraSystem> cameraSystem;
+    std::unique_ptr<GameLogic> gameLogic;
+    std::unique_ptr<StateManager> stateManager;
+    std::unique_ptr<AudioManager> audioManager;
     
     // VARIABLES GRÁFICAS
     GLFWwindow* window;
@@ -32,13 +39,9 @@ private:
     unsigned int terrainShaderProgram; // Programa para el terreno
     unsigned int VAO, VBO;           // Para plantas
     unsigned int terrainVAO, terrainVBO, terrainEBO; // Para terreno
-    std::vector<Plant> plants;       // Lista de plantas en el mundo
     
     // VARIABLES DEL TERRENO
     int terrainVertexCount;
-    
-    // VARIABLES DE TIMPIZACIÓN
-    std::chrono::steady_clock::time_point splashStartTime;
     
     // VARIABLES DE CONFIGURACIÓN
     float masterVolume;
@@ -50,31 +53,11 @@ private:
     float plantSizeBush = PLANT_SIZE_BUSH;
     float plantSizeTree = PLANT_SIZE_TREE;
     
-    // VARIABLES DE CÁMARA (Vista de Estrategia/Gestión)
-    glm::vec3 cameraPos;
-    glm::vec3 cameraTarget;      // Centro del mapa que está mirando
-    float cameraRotation;        // Rotación alrededor del eje Y
-    bool leftMousePressed;       // Flag para detectar clicks
-    bool escapePressed = false;  // Flag para detectar ESC (evitar múltiples activaciones)
-    double lastMouseX, lastMouseY;
-    
     // VARIABLE DE TIEMPO PARA ANIMACIÓN DEL TERRENO
     float elapsedTime;           // Tiempo total transcurrido en segundos
     
     // PERLIN NOISE PARA TERRENO PROCEDURAL
     PerlinNoise* perlinNoise;
-    
-    // CACHED MATRICES PARA OPTIMIZACIÓN
-    glm::mat4 cachedProjection;
-    glm::mat4 cachedView;
-    glm::mat4 cachedModel;
-    bool projectionDirty;
-    bool viewDirty;
-    
-    // PLANT GEOMETRY MESHES (CACHEADAS)
-    std::map<int, unsigned int> plantVAOs;      // VAO por tipo de planta
-    std::map<int, unsigned int> plantVBOs;      // VBO por tipo de planta
-    std::map<int, unsigned int> plantIndexCounts;  // Índices por tipo
     
     // MÉTODOS PRIVADOS
     void generateTerrain();
