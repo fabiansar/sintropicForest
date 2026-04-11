@@ -10261,8 +10261,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-pf9t6a"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-pf9t6a"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lm11kf"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lm11kf"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10277,16 +10277,16 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-pf9t6a'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lm11kf'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_040d4
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_040d4.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_040d4.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_040d4.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_040d4.dir/CMakeCCompilerABI.c.obj -o cmTC_040d4.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_040d4.lib -Xlinker /pdb:cmTC_040d4.pdb -Xlinker /version:0.0     && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_00839
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_00839.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_00839.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_00839.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_00839.dir/CMakeCCompilerABI.c.obj -o cmTC_00839.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_00839.lib -Xlinker /pdb:cmTC_00839.pdb -Xlinker /version:0.0     && cd ."
         clang version 22.1.3 (https://github.com/llvm/llvm-project e9846648fd6183ee6d8cbdb4502213fcf902a211)
         Target: x86_64-pc-windows-msvc
         Thread model: posix
         InstalledDir: C:\\Program Files\\LLVM\\bin
-         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_040d4.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_040d4.dir/CMakeCCompilerABI.c.obj /MANIFEST:EMBED /implib:cmTC_040d4.lib /pdb:cmTC_040d4.pdb /version:0.0
+         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_00839.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_00839.dir/CMakeCCompilerABI.c.obj /MANIFEST:EMBED /implib:cmTC_00839.lib /pdb:cmTC_00839.pdb /version:0.0
         
       exitCode: 0
   -
@@ -10347,8 +10347,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-sh6eki"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-sh6eki"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-aldh9x"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-aldh9x"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: ""
@@ -10364,16 +10364,16 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-sh6eki'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-aldh9x'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_1f3a3
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_1f3a3.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles\\cmTC_1f3a3.dir\\CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles/cmTC_1f3a3.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_1f3a3.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_1f3a3.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_1f3a3.lib -Xlinker /pdb:cmTC_1f3a3.pdb -Xlinker /version:0.0     && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_79cca
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_79cca.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles\\cmTC_79cca.dir\\CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles/cmTC_79cca.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -v -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_79cca.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_79cca.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_79cca.lib -Xlinker /pdb:cmTC_79cca.pdb -Xlinker /version:0.0     && cd ."
         clang version 22.1.3 (https://github.com/llvm/llvm-project e9846648fd6183ee6d8cbdb4502213fcf902a211)
         Target: x86_64-pc-windows-msvc
         Thread model: posix
         InstalledDir: C:\\Program Files\\LLVM\\bin
-         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_1f3a3.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_1f3a3.dir/CMakeCXXCompilerABI.cpp.obj /MANIFEST:EMBED /implib:cmTC_1f3a3.lib /pdb:cmTC_1f3a3.pdb /version:0.0
+         "C:\\\\Program Files\\\\LLVM\\\\bin\\\\lld-link" -out:cmTC_79cca.exe "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.50.35717\\\\atlmfc\\\\lib\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\ucrt\\\\x64" "-libpath:C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Lib\\\\10.0.26100.0\\\\um\\\\x64" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\x86_64-pc-windows-msvc" "-libpath:C:\\\\Program Files\\\\LLVM\\\\lib\\\\clang\\\\22\\\\lib\\\\windows" -nologo -debug /subsystem:console CMakeFiles/cmTC_79cca.dir/CMakeCXXCompilerABI.cpp.obj /MANIFEST:EMBED /implib:cmTC_79cca.lib /pdb:cmTC_79cca.pdb /version:0.0
         
       exitCode: 0
   -
@@ -10437,8 +10437,8 @@ events:
     checks:
       - "Detecting CXX compile features"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t3gxp1"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t3gxp1"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ktttfu"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ktttfu"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: ""
@@ -10453,11 +10453,11 @@ events:
       variable: "CMAKE_CXX_FEATURE_TEST"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t3gxp1'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ktttfu'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_ab2a3
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_ab2a3.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_ab2a3.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_ab2a3.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t3gxp1/feature_tests.cxx
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_ab2a3.dir/feature_tests.cxx.obj -o cmTC_ab2a3.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_ab2a3.lib -Xlinker /pdb:cmTC_ab2a3.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_8da13
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_8da13.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_8da13.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_8da13.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ktttfu/feature_tests.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_8da13.dir/feature_tests.cxx.obj -o cmTC_8da13.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_8da13.lib -Xlinker /pdb:cmTC_8da13.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         
       exitCode: 0
   -
@@ -10472,8 +10472,8 @@ events:
     checks:
       - "Detecting CXX compile features"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ymluyh"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ymluyh"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-loh322"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-loh322"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: ""
@@ -10488,11 +10488,11 @@ events:
       variable: "CMAKE_CXX_FEATURE_TEST"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ymluyh'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-loh322'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_6a0f3
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_6a0f3.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_6a0f3.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_6a0f3.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ymluyh/feature_tests.cxx
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_6a0f3.dir/feature_tests.cxx.obj -o cmTC_6a0f3.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_6a0f3.lib -Xlinker /pdb:cmTC_6a0f3.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_9186a
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd   -std=c++14 -MD -MT CMakeFiles/cmTC_9186a.dir/feature_tests.cxx.obj -MF CMakeFiles\\cmTC_9186a.dir\\feature_tests.cxx.obj.d -o CMakeFiles/cmTC_9186a.dir/feature_tests.cxx.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-loh322/feature_tests.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -nostartfiles -nostdlib -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_9186a.dir/feature_tests.cxx.obj -o cmTC_9186a.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_9186a.lib -Xlinker /pdb:cmTC_9186a.pdb -Xlinker /version:0.0   -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         
       exitCode: 0
   -
@@ -10511,8 +10511,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-h5rava"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-h5rava"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t5myt3"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t5myt3"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10527,13 +10527,13 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-h5rava'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t5myt3'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_2ea9d
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_2ea9d.dir/src.c.obj -MF CMakeFiles\\cmTC_2ea9d.dir\\src.c.obj.d -o CMakeFiles/cmTC_2ea9d.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-h5rava/src.c
-        FAILED: [code=1] CMakeFiles/cmTC_2ea9d.dir/src.c.obj 
-        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_2ea9d.dir/src.c.obj -MF CMakeFiles\\cmTC_2ea9d.dir\\src.c.obj.d -o CMakeFiles/cmTC_2ea9d.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-h5rava/src.c
-        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-h5rava/src.c:1:10: fatal error: 'pthread.h' file not found
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_70f2b
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_70f2b.dir/src.c.obj -MF CMakeFiles\\cmTC_70f2b.dir\\src.c.obj.d -o CMakeFiles/cmTC_70f2b.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t5myt3/src.c
+        FAILED: [code=1] CMakeFiles/cmTC_70f2b.dir/src.c.obj 
+        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -DCMAKE_HAVE_LIBC_PTHREAD -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_70f2b.dir/src.c.obj -MF CMakeFiles\\cmTC_70f2b.dir\\src.c.obj.d -o CMakeFiles/cmTC_70f2b.dir/src.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t5myt3/src.c
+        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-t5myt3/src.c:1:10: fatal error: 'pthread.h' file not found
             1 | #include <pthread.h>
               |          ^~~~~~~~~~~
         1 error generated.
@@ -10555,8 +10555,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ynom1t"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ynom1t"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-2emv12"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-2emv12"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10571,13 +10571,13 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ynom1t'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-2emv12'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_a4308
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_a4308.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_a4308.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_a4308.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-ynom1t/CheckFunctionExists.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_a4308.dir/CheckFunctionExists.c.obj -o cmTC_a4308.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_a4308.lib -Xlinker /pdb:cmTC_a4308.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
-        FAILED: [code=1] cmTC_a4308.exe 
-        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_a4308.dir/CheckFunctionExists.c.obj -o cmTC_a4308.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_a4308.lib -Xlinker /pdb:cmTC_a4308.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_779ed
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_779ed.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_779ed.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_779ed.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-2emv12/CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_779ed.dir/CheckFunctionExists.c.obj -o cmTC_779ed.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_779ed.lib -Xlinker /pdb:cmTC_779ed.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        FAILED: [code=1] cmTC_779ed.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_779ed.dir/CheckFunctionExists.c.obj -o cmTC_779ed.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_779ed.lib -Xlinker /pdb:cmTC_779ed.pdb -Xlinker /version:0.0   -lpthreads.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         lld-link: error: could not open 'pthreads.lib': no such file or directory
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
         ninja: build stopped: subcommand failed.
@@ -10598,8 +10598,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-fg3jl6"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-fg3jl6"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-dfkg6y"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-dfkg6y"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10614,13 +10614,13 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-fg3jl6'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-dfkg6y'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_09cf7
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_09cf7.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_09cf7.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_09cf7.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-fg3jl6/CheckFunctionExists.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_09cf7.dir/CheckFunctionExists.c.obj -o cmTC_09cf7.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_09cf7.lib -Xlinker /pdb:cmTC_09cf7.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
-        FAILED: [code=1] cmTC_09cf7.exe 
-        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_09cf7.dir/CheckFunctionExists.c.obj -o cmTC_09cf7.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_09cf7.lib -Xlinker /pdb:cmTC_09cf7.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_1c28b
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_1c28b.dir/CheckFunctionExists.c.obj -MF CMakeFiles\\cmTC_1c28b.dir\\CheckFunctionExists.c.obj.d -o CMakeFiles/cmTC_1c28b.dir/CheckFunctionExists.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-dfkg6y/CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_1c28b.dir/CheckFunctionExists.c.obj -o cmTC_1c28b.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_1c28b.lib -Xlinker /pdb:cmTC_1c28b.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
+        FAILED: [code=1] cmTC_1c28b.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~1\\LLVM\\bin\\clang.exe -nostartfiles -nostdlib -DCHECK_FUNCTION_EXISTS=pthread_create -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -Xlinker /subsystem:console -fuse-ld=lld-link CMakeFiles/cmTC_1c28b.dir/CheckFunctionExists.c.obj -o cmTC_1c28b.exe -Xlinker /MANIFEST:EMBED -Xlinker /implib:cmTC_1c28b.lib -Xlinker /pdb:cmTC_1c28b.pdb -Xlinker /version:0.0   -lpthread.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames  && cd ."
         lld-link: error: could not open 'pthread.lib': no such file or directory
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
         ninja: build stopped: subcommand failed.
@@ -10640,8 +10640,8 @@ events:
     checks:
       - "Check if compiler accepts -pthread"
     directories:
-      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-qym1x1"
-      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-qym1x1"
+      source: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lywxv7"
+      binary: "C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lywxv7"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Program Files/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
@@ -10656,13 +10656,13 @@ events:
       variable: "THREADS_HAVE_PTHREAD_ARG"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-qym1x1'
+        Change Dir: 'C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lywxv7'
         
-        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_ed5f3
-        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_ed5f3.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_ed5f3.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_ed5f3.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-qym1x1/CheckForPthreads.c
-        FAILED: [code=1] CMakeFiles/cmTC_ed5f3.dir/CheckForPthreads.c.obj 
-        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_ed5f3.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_ed5f3.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_ed5f3.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-qym1x1/CheckForPthreads.c
-        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-qym1x1/CheckForPthreads.c:1:10: fatal error: 'pthread.h' file not found
+        Run Build Command(s): C:/Users/elfab/AppData/Local/Microsoft/WinGet/Packages/Ninja-build.Ninja_Microsoft.Winget.Source_8wekyb3d8bbwe/ninja.exe -v cmTC_d2057
+        [1/2] C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_d2057.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_d2057.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_d2057.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lywxv7/CheckForPthreads.c
+        FAILED: [code=1] CMakeFiles/cmTC_d2057.dir/CheckForPthreads.c.obj 
+        C:\\PROGRA~1\\LLVM\\bin\\clang.exe -D_MBCS  -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_d2057.dir/CheckForPthreads.c.obj -MF CMakeFiles\\cmTC_d2057.dir\\CheckForPthreads.c.obj.d -o CMakeFiles/cmTC_d2057.dir/CheckForPthreads.c.obj -c C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lywxv7/CheckForPthreads.c
+        C:/Users/elfab/Documents/IA/build/CMakeFiles/CMakeScratch/TryCompile-lywxv7/CheckForPthreads.c:1:10: fatal error: 'pthread.h' file not found
             1 | #include <pthread.h>
               |          ^~~~~~~~~~~
         1 error generated.

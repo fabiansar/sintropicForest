@@ -40,6 +40,9 @@ private:
     unsigned int VAO, VBO;           // Para plantas
     unsigned int terrainVAO, terrainVBO, terrainEBO; // Para terreno
     
+    // ✅ OPTIMIZACIÓN: Pre-allocate vertex buffer
+    std::vector<float> vertexBuffer;  // Buffer reutilizable para cada frame
+    
     // VARIABLES DEL TERRENO
     int terrainVertexCount;
     
