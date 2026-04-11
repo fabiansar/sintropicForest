@@ -36,8 +36,11 @@ public:
         // Mouse
         bool mouseLeftClick = false;
         bool mouseRightClick = false;
+        bool mouseRightPressed = false;  // Estado continuo del botón derecho
         double mouseX = 0.0;
         double mouseY = 0.0;
+        double mouseDeltaX = 0.0;        // Cambio en X desde last frame
+        double mouseDeltaY = 0.0;        // Cambio en Y desde last frame
         double scrollY = 0.0;  // Cambio en scroll wheel este frame
     };
 
@@ -75,6 +78,14 @@ public:
         currentState.scrollY = scrollAccumulator;
         scrollAccumulator = 0.0;
         
+        // Calcular mouse delta antes de actualizar posición
+        double newMouseX, newMouseY;
+        glfwGetCursorPos(window, &newMouseX, &newMouseY);
+        currentState.mouseDeltaX = newMouseX - currentState.mouseX;
+        currentState.mouseDeltaY = newMouseY - currentState.mouseY;
+        currentState.mouseX = newMouseX;
+        currentState.mouseY = newMouseY;
+        
         // Keyboard state
         currentState.keyW = glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS;
         currentState.keyS = glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS;
@@ -99,9 +110,6 @@ public:
             }
         }
         
-        // Mouse state
-        glfwGetCursorPos(window, &currentState.mouseX, &currentState.mouseY);
-        
         // Left mouse button with debounce
         int mouseButtonState = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
         if (mouseButtonState == GLFW_PRESS && !leftMousePressed) {
@@ -114,10 +122,11 @@ public:
             }
         }
         
-        // Right mouse button with debounce
+        // Right mouse button - capturar click y estado continuo
         int rightMouseButtonState = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
+        currentState.mouseRightPressed = (rightMouseButtonState == GLFW_PRESS);  // Estado continuo
         if (rightMouseButtonState == GLFW_PRESS && !rightMousePressed) {
-            currentState.mouseRightClick = true;
+            currentState.mouseRightClick = true;  // Solo el frame del primer click
             rightMousePressed = true;
         } else {
             currentState.mouseRightClick = false;
@@ -131,6 +140,10 @@ public:
      * Acceso a estado actual
      */
     const InputState& getState() const {
+        return currentState;
+    }
+
+    const InputState& getInputState() const {
         return currentState;
     }
 

@@ -78,11 +78,11 @@ public:
         float cosA = cos(angle);
         float sinA = sin(angle);
         
-        // Rotar input según rotación de cámara
-        // Posición cámara: (cos(angle)*dist, height, sin(angle)*dist)
-        // Forward es negativo para W (adelante hacia la cámara)
-        // Right es positivo para D (derecha)
-        float x = forward * cosA + right * sinA;
+        // Matriz de rotación 2D correcta:
+        // x_new = x * cos(θ) - z * sin(θ)
+        // z_new = x * sin(θ) + z * cos(θ)
+        // Donde forward es eje Z, right es eje X
+        float x = forward * cosA - right * sinA;
         float z = forward * sinA + right * cosA;
         
         target.x += x;

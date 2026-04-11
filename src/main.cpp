@@ -392,10 +392,11 @@ public:
                 camera.panTargetRotated(forward, right);
             }
             
-            // ROTACIÓN DE CÁMARA
-            float rotationSpeed = 1.0f;
-            if (input.keyQ) camera.rotate(-rotationSpeed);
-            if (input.keyE) camera.rotate(rotationSpeed);
+            // ROTACIÓN DE CÁMARA CON RATÓN (botón derecho + movimiento horizontal)
+            if (input.mouseRightPressed) {
+                float rotationSpeed = 0.1f;  // Grados por píxel de movimiento del ratón
+                camera.rotate((float)input.mouseDeltaX * rotationSpeed);
+            }
             
             // ZOOM
             float zoomSpeed = 0.5f;
@@ -617,12 +618,12 @@ public:
         // Panel de información en la esquina superior izquierda
         ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_Always);
         ImGui::SetNextWindowBgAlpha(0.35f);  // Semi-transparente
-        ImGui::Begin("Game Info", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
-        ImGui::Text("ESC: Back to Menu");    // Instrucción
-        ImGui::Text("W/A/S/D: Move Camera");  // Nueva instrucción
-        ImGui::Text("Q/E: Rotate Camera");    // Nueva instrucción
-        ImGui::Text("UP/DOWN: Zoom");         // Nueva instrucción
-        ImGui::Text("Lights: %d", NUM_LIGHTS);  // Cantidad de puntos
+        ImGui::Begin("Game Controls", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::Text("ESC: Back to Menu");
+        ImGui::Text("W/A/S/D: Move Camera");
+        ImGui::Text("Right Mouse + Drag: Rotate Camera");
+        ImGui::Text("UP/DOWN: Zoom");
+        ImGui::Text("Lights: %d", NUM_LIGHTS);
         ImGui::End();
 
         ImGui::Render();
