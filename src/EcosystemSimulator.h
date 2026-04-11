@@ -131,7 +131,7 @@ private:
     void updatePlantLife(PlantData& plant, float deltaTime);
     void updateEnvironmentalStress(PlantData& plant);
     void checkSuccession(PlantData& plant);
-    void disperseSeeds(const PlantData& plant, float deltaTime);
+    void disperseSeeds(PlantData& plant, float deltaTime);
     void resolveCompetition();
     void updateInteractions();
     glm::vec3 findRandomGrowthSpot(const PlantData& parent) const;

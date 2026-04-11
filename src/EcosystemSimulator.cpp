@@ -280,7 +280,7 @@ void EcosystemSimulator::checkSuccession(PlantData& plant) {
 // DISPERSIÓN DE SEMILLAS
 // ============================================================================
 
-void EcosystemSimulator::disperseSeeds(const PlantData& plant, float deltaTime) {
+void EcosystemSimulator::disperseSeeds(PlantData& plant, float deltaTime) {
     if (plant.seedBankAccumulated < 1.0f || plants.size() >= (size_t)maxPlants) {
         return;
     }

@@ -73,6 +73,30 @@ build CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj: CXX_COMPILER__3DEngine
   TARGET_PDB = 3DEngine.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\3DEngine.dir
 
+build CMakeFiles/3DEngine.dir/src/EcosystemSimulator.cpp.obj: CXX_COMPILER__3DEngine_unscanned_Debug C$:/Users/elfab/Documents/IA/src/EcosystemSimulator.cpp || cmake_object_order_depends_target_3DEngine
+  CONFIG = Debug
+  DEFINES = -DGLFW_DLL
+  DEP_FILE = CMakeFiles\3DEngine.dir\src\EcosystemSimulator.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++17
+  INCLUDES = -isystem C:/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\3DEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\3DEngine.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\3DEngine.dir\
+  TARGET_PDB = 3DEngine.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\3DEngine.dir
+
+build CMakeFiles/3DEngine.dir/src/ParticleAtomSystem.cpp.obj: CXX_COMPILER__3DEngine_unscanned_Debug C$:/Users/elfab/Documents/IA/src/ParticleAtomSystem.cpp || cmake_object_order_depends_target_3DEngine
+  CONFIG = Debug
+  DEFINES = -DGLFW_DLL
+  DEP_FILE = CMakeFiles\3DEngine.dir\src\ParticleAtomSystem.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu++17
+  INCLUDES = -isystem C:/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\3DEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\3DEngine.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\3DEngine.dir\
+  TARGET_PDB = 3DEngine.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\3DEngine.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target 3DEngine
@@ -81,7 +105,7 @@ build CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj: CXX_COMPILER__3DEngine
 #############################################
 # Link the executable 3DEngine.exe
 
-build 3DEngine.exe: CXX_EXECUTABLE_LINKER__3DEngine_Debug CMakeFiles/3DEngine.dir/src/main_new.cpp.obj CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj | C$:/vcpkg/installed/x64-windows/debug/lib/glm.lib C$:/vcpkg/installed/x64-windows/debug/lib/glad.lib C$:/vcpkg/installed/x64-windows/debug/lib/imguid.lib C$:/vcpkg/installed/x64-windows/debug/lib/glfw3dll.lib
+build 3DEngine.exe: CXX_EXECUTABLE_LINKER__3DEngine_Debug CMakeFiles/3DEngine.dir/src/main_new.cpp.obj CMakeFiles/3DEngine.dir/src/GraphicsEngine.cpp.obj CMakeFiles/3DEngine.dir/src/EcosystemSimulator.cpp.obj CMakeFiles/3DEngine.dir/src/ParticleAtomSystem.cpp.obj | C$:/vcpkg/installed/x64-windows/debug/lib/glm.lib C$:/vcpkg/installed/x64-windows/debug/lib/glad.lib C$:/vcpkg/installed/x64-windows/debug/lib/imguid.lib C$:/vcpkg/installed/x64-windows/debug/lib/glfw3dll.lib
   CONFIG = Debug
   FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   LINK_FLAGS = -Xlinker /subsystem:console -fuse-ld=lld-link

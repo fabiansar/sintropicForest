@@ -12,6 +12,8 @@ find_package(imgui CONFIG REQUIRED)
 add_executable(3DEngine 
     src/main_new.cpp
     src/GraphicsEngine.cpp
+    src/EcosystemSimulator.cpp
+    src/ParticleAtomSystem.cpp
 )
 
 # Link libraries
